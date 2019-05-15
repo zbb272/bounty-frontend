@@ -7,6 +7,12 @@ import LoginPage from './containers/loginPage';
 import ProfileDashboardPage from './containers/profileDashboardPage'
 import './App.css';
 
+// whiteish grey:  "#E1EDFF"
+// light blue:     "#8DA2C0"
+// main color:     "#2C4870"
+// dark blue:      "#031229"
+// black:          "#000000"
+
 class App extends Component {
   render(){
     console.log("Component: ", this.props.currentUser)

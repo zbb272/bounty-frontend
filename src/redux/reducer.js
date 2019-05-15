@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import { LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
+import { CREATING_USER, LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
 
 //EXAMPLE REDUCER
 // const loadingReducer = (oldState=false, action) => {
@@ -19,6 +19,8 @@ const userReducer = (oldState=false, action) => {
       return true
     case FETCHED_USER:
       return action.payload
+    case CREATING_USER:
+      return true
     default:
       return oldState
   }

@@ -1,5 +1,5 @@
 // //actionCreators
-import { FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
+import { CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
 
 const USERS_URL = 'http://localhost:3000/api/v1/users'
 
@@ -39,7 +39,35 @@ function loginUser(credentials){
   }
 }
 
-export {fetchedUser, loadingUser, loginUser, authenticatedUser}
+function creatingUser(){
+  return {type: CREATING_USER}
+}
+
+function createUser(credentials){
+  console.log(credentials)
+  let userToCreate = {
+    username: credentials.username,
+    email: credentials.email,
+    password_digest: credentials.password
+  }
+  return (dispatch) => {
+    dispatch(creatingUser())
+    fetch(USERS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userToCreate)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(fetchedUser(data))
+      dispatch(authenticatedUser())
+    })
+  }
+}
+
+export { creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
 
 
 //

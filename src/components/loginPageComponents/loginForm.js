@@ -4,12 +4,6 @@ import { Link, withRouter } from "react-router-dom";
 import {loginUser} from '../../redux/actionCreators';
 import {connect} from 'react-redux'
 
-// whiteish grey:  "#E1EDFF"
-// light blue:     "#8DA2C0"
-// main color:     "#2C4870"
-// dark blue:      "#031229"
-// black:          "#000000"
-
 const segmentStyle = {
   background: "#031229"
 }
