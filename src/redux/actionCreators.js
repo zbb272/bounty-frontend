@@ -1,8 +1,47 @@
 // //actionCreators
-// import {CHANGING_SEARCH_TEXT, VOTE_FOR_PAINTING, UPDATE_PAINTING,
-//   FETCHED_PAINTINGS, LOADING_PAINTINGS} from './actionType'
-//
-// const URL = 'http://localhost:3000/paintings'
+import { FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
+
+const USERS_URL = 'http://localhost:3000/api/v1/users'
+
+function fetchedUser(userObj){
+  return {type: FETCHED_USER, payload: userObj}
+}
+
+function loadingUser(){
+  return {type: LOADING_USER}
+}
+
+function authenticatedUser(){
+  return {type: AUTHENTICATED_USER}
+}
+
+function loginUser(credentials){
+  return (dispatch) => {
+    dispatch(loadingUser())
+    fetch(USERS_URL)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      let user = data.find(user => {
+        if(user.email === credentials.email && user.password_digest === credentials.password){
+          return true
+        }
+      })
+      if(user === undefined){
+        alert("No user found");
+      }else {
+        console.log(user)
+        dispatch(fetchedUser(user))
+        dispatch(authenticatedUser())
+      }
+      // dispatch(fetchedUser(data))
+    })
+  }
+}
+
+export {fetchedUser, loadingUser, loginUser, authenticatedUser}
+
+
 //
 // function onSearch(searchText){
 //   return {type: CHANGING_SEARCH_TEXT, payload: searchText}

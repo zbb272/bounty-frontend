@@ -1,35 +1,55 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Form, Segment, Button } from 'semantic-ui-react';
+import { Link, withRouter } from "react-router-dom";
+import {loginUser} from '../../redux/actionCreators';
+import {connect} from 'react-redux'
 
-const LoginForm = () => {
+// whiteish grey:  "#E1EDFF"
+// light blue:     "#8DA2C0"
+// main color:     "#2C4870"
+// dark blue:      "#031229"
+// black:          "#000000"
 
-  const segmentStyle = {
-    background: "#031229"
-  }
-  // whiteish grey:  "#E1EDFF"
-  // light blue:     "#8DA2C0"
-  // main color:     "#2C4870"
-  // dark blue:      "#031229"
-  // black:          "#000000"
-
-  return(
-    <Form size='large' >
-      <Segment stacked style={segmentStyle}>
-        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-        <Form.Input
-          fluid
-          icon='lock'
-          iconPosition='left'
-          placeholder='Password'
-          type='password'
-        />
-
-        <Button color='blue' fluid size='large'>
-          Login
-        </Button>
-      </Segment>
-    </Form>
-  );
+const segmentStyle = {
+  background: "#031229"
 }
 
-export default LoginForm;
+class LoginForm extends Component{
+  constructor(){
+    super();
+    this.state = {
+      email: "",
+      password: "",
+    }
+  }
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.loginUser(this.state)
+  }
+
+  render(){
+    return(
+      <Form size='large' onSubmit={ this.onFormSubmit }>
+        <Segment stacked style={segmentStyle}>
+          <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange={
+              e => { this.setState({email: e.target.value})}
+            } />
+          <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password' onChange={
+              e => { this.setState({password: e.target.value})}
+            }  />
+
+          <Button color='blue' fluid size='large'>
+            Login
+          </Button>
+        </Segment>
+      </Form>
+    );
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  loginUser: (credentials) => {dispatch( loginUser(credentials) )}
+})
+
+export default withRouter(connect(mapDispatchToProps, {loginUser})(LoginForm));

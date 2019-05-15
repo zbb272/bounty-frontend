@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Message } from 'semantic-ui-react';
 
 const LoginFooter = () => {
@@ -11,7 +12,7 @@ const LoginFooter = () => {
 
   return(
     <Message style={footerStyle}>
-      New to Bounty? Create an account <a href='#'>here</a>
+      New to Bounty? Create an account <Link to={"/signup"}>here</Link>
     </Message>
   );
 }

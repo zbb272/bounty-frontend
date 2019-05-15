@@ -1,6 +1,5 @@
 import {combineReducers} from 'redux'
-// import {CHANGING_SEARCH_TEXT, VOTE_FOR_PAINTING, UPDATE_PAINTING,
-//   FETCHED_PAINTINGS, LOADING_PAINTINGS} from './actionType'
+import { LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
 
 //EXAMPLE REDUCER
 // const loadingReducer = (oldState=false, action) => {
@@ -14,9 +13,32 @@ import {combineReducers} from 'redux'
 //   }
 // }
 
+const userReducer = (oldState=false, action) => {
+  switch(action.type){
+    case LOADING_USER:
+      return true
+    case FETCHED_USER:
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
+const authReducer = (oldState=false, action) => {
+  switch(action.type){
+    case AUTHENTICATED_USER:
+      return true
+    default:
+      return oldState
+  }
+}
+
+
 
 //map the key: reducer
 const rootReducer = combineReducers({
+  currentUser: userReducer,
+  userAuthenticated: authReducer
   // searchText: searchTextReducer,
   // paintings: paintingsReducer,
   // loading: loadingReducer
