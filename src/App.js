@@ -6,6 +6,7 @@ import SignUpPage from './containers/signUpPage';
 import LoginPage from './containers/loginPage';
 import ProfileDashboardPage from './containers/profileDashboardPage'
 import './App.css';
+import { fetchedUser, authenticatedUser } from './redux/actionCreators'
 
 // whiteish grey:  "#E1EDFF"
 // light blue:     "#8DA2C0"
@@ -14,6 +15,26 @@ import './App.css';
 // black:          "#000000"
 
 class App extends Component {
+  componentDidMount(){
+    // this.removeUserFromLocalStorage()
+    this.checkLocalStorageForUser()
+  }
+
+  checkLocalStorageForUser = () => {
+    if(localStorage.hasOwnProperty("currentUser")){
+      let user = localStorage.getItem("currentUser");
+      user = JSON.parse(user);
+      this.props.fetchedUser(user)
+      this.props.authenticatedUser()
+    }
+  }
+
+  removeUserFromLocalStorage = () => {
+    if(localStorage.hasOwnProperty("currentUser")){
+      localStorage.removeItem("currentUser");
+    }
+  }
+
   render(){
     console.log("Component: ", this.props.currentUser)
     return (
@@ -32,4 +53,9 @@ const mapStateToProps = (store, ownProps) => ({
   currentUser: store.currentUser
 })
 
-export default withRouter(connect(mapStateToProps)(App));
+const mapDispatchToProps = (dispatch) => ({
+  fetchedUser: (user)=>{dispatch( fetchedUser(user) )},
+  authenticatedUser: (user)=>{dispatch( authenticatedUser(user) )}
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

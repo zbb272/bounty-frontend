@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { Redirect, withRouter } from 'react-router-dom';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import NavBar from '../components/navBar';
 
 const loginFormStyle = {
   height: "100%",
@@ -18,6 +19,7 @@ class ProfileDashboardPage extends Component {
         }}/>
         :
         <div className='dashboard-page' style={loginFormStyle}>
+          <NavBar />
           <h1>Dashboard page</h1>
         </div>
         }

@@ -63,6 +63,7 @@ function createUser(credentials){
     .then(data => {
       dispatch(fetchedUser(data))
       dispatch(authenticatedUser())
+      localStorage.setItem("currentUser", JSON.stringify(data));
     })
   }
 }
