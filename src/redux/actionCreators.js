@@ -33,7 +33,7 @@ function loginUser(credentials){
         console.log(user)
         dispatch(fetchedUser(user))
         dispatch(authenticatedUser())
-        localStorage.setItem("currentUser", JSON.stringify(data));
+        localStorage.setItem("currentUser", JSON.stringify(user));
       }
       // dispatch(fetchedUser(data))
     })

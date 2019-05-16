@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 import { Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../components/navBar';
+import UserInformation from './userInformation'
+import UserProjects from './userProjects'
+import UserBounties from './userBounties'
 
 const loginFormStyle = {
   height: "100%",
   marginTop: "25%",
+}
+
+const bountiesStyle = {
+  marginRight: 10,
 }
 
 class ProfileDashboardPage extends Component {
@@ -20,7 +27,31 @@ class ProfileDashboardPage extends Component {
         :
         <div className='dashboard-page' style={loginFormStyle}>
           <NavBar />
-          <h1>Dashboard page</h1>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={5}>
+                <UserInformation />
+              </Grid.Column>
+
+              <Grid.Column width={11}>
+                <Segment style={bountiesStyle}>
+                  <Grid columns="equal">
+                    <Grid.Row columns="equal">
+                    <Grid.Column>
+                      <h1>Current Projects</h1>
+                      <UserProjects />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <h1>Current Bounties</h1>
+                      <UserBounties />
+                    </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </Segment>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
         </div>
         }
       </div>
