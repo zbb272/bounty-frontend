@@ -22,7 +22,7 @@ class UserInfoTop extends Component{
       <div>
         <Segment>
           <h2>{this.props.currentUser.username}</h2>
-          <p><Link to={"/login"}>Edit Profile</Link></p>
+          <p><Link to={"/edit"}>Edit Profile</Link></p>
           <p>Current Balance: $0.00</p>
           <p><Link to={"/login"}>Transfer Funds</Link></p>
         </Segment>

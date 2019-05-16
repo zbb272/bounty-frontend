@@ -5,6 +5,7 @@ import logo from './logo.svg';
 import SignUpPage from './containers/signUpPage';
 import LoginPage from './containers/loginPage';
 import ProfileDashboardPage from './containers/profileDashboardPage'
+import EditProfileDashboardPage from './containers/editProfileDashboardPage'
 import './App.css';
 import { fetchedUser, authenticatedUser } from './redux/actionCreators'
 
@@ -43,6 +44,7 @@ class App extends Component {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignUpPage} />
           <Route exact path="/dashboard" component={ProfileDashboardPage} />
+          <Route exact path="/edit" component={EditProfileDashboardPage} />
         </Switch>
       </div>
     );
