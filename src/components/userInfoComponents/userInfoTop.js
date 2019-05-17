@@ -17,11 +17,12 @@ const headerStyle = {
 class UserInfoTop extends Component{
 
   render(){
-    console.log(this.props)
     return(
       <div>
         <Segment>
           <h2>{this.props.currentUser.username}</h2>
+          <p>Github: {this.props.currentUser.github_url}</p>
+          <p>Description: {this.props.currentUser.description}</p>
           <p><Link to={"/edit"}>Edit Profile</Link></p>
           <p>Current Balance: $0.00</p>
           <p><Link to={"/login"}>Transfer Funds</Link></p>

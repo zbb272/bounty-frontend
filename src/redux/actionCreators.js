@@ -1,5 +1,5 @@
 // //actionCreators
-import { CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
+import { EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
 
 const USERS_URL = 'http://localhost:3000/api/v1/users'
 
@@ -69,7 +69,30 @@ function createUser(credentials){
   }
 }
 
-export { creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+function patchingUser(){
+  return {type: EDIT_USER}
+}
+
+function editUser(userObj){
+  return (dispatch) => {
+    dispatch(patchingUser())
+    fetch(USERS_URL + `/${userObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(fetchedUser(data))
+      dispatch(authenticatedUser())
+      localStorage.setItem("currentUser", JSON.stringify(data));
+    })
+  }
+}
+
+export { editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
 
 
 //

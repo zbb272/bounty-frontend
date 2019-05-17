@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Segment, TextArea, Form, Button } from 'semantic-ui-react';
+import { Icon, Segment, TextArea, Form, Button } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
+import { editUser } from '../../redux/actionCreators';
 import { connect } from "react-redux"
 
 const imageStyle = {
@@ -24,6 +25,7 @@ class EditUserInfo extends Component{
     this.state = {
       username: this.props.currentUser.username,
       email: this.props.currentUser.email,
+      github: this.props.currentUser.github_url,
       description: this.props.currentUser.description,
       newPassword: "",
       confNewPassword: "",
@@ -33,22 +35,57 @@ class EditUserInfo extends Component{
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state)
+    if(this.state.password !== this.props.currentUser.password_digest){
+      alert("Password incorrect")
+    } else{
+      if(this.state.newPassword === ""){
+        let userObj = {
+          id: this.props.currentUser.id,
+          username: this.state.username,
+          email: this.state.email,
+          github_url: this.state.github,
+          description: this.state.description,
+          password_digest: this.state.password,
+        }
+        this.props.editUser(userObj)
+        this.props.history.push("/dashboard")
+      }
+      else{
+        if(this.state.newPassword !== this.state.confNewPassword){
+          alert("New Password does not match confirmation")
+        } else{
+          let userObj = {
+            username: this.state.username,
+            email: this.state.email,
+            github_url: this.state.github,
+            description: this.state.description,
+            password_digest: this.state.newPassword,
+          }
+          this.props.editUser(userObj)
+          this.props.history.push("/dashboard")
+        }
+      }
+    }
   }
 
   render(){
-    console.log(this.props)
     return(
-      <div>
+      <Segment>
+        <Segment>
+          <Icon name="user" size="massive" />
+        </Segment>
         <Form size='large' onSubmit={ this.onFormSubmit }>
           <Segment stacked style={segmentStyle}>
-            <Form.Input fluid size="big" icon='user' iconPosition='left' placeholder={this.state.username} onChange={
+            <Form.Input fluid size="big" icon='user' iconPosition='left' placeholder="Email" value={this.state.username} onChange={
                 e => { this.setState({email: e.target.value})}
               } />
-            <Form.Input fluid icon='user' iconPosition='left' placeholder={this.state.email} onChange={
+            <Form.Input fluid icon='user' iconPosition='left' placeholder="Username" value={this.state.email} onChange={
                 e => { this.setState({email: e.target.value})}
               } />
-            <TextArea fluid icon='bars' iconPosition='left' placeholder={this.state.description} onChange={
+            <Form.Input fluid icon='github' iconPosition='left' placeholder="Github URL" value={this.state.github} onChange={
+                e => { this.setState({github: e.target.value})}
+              } />
+            <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
                 e => { this.setState({description: e.target.value})}
               } />
             <Form.Input fluid icon='lock' iconPosition='left' placeholder='New Password' type='password' onChange={
@@ -68,7 +105,7 @@ class EditUserInfo extends Component{
         <Button color='red' fluid size='large'>
           Delete Profile
         </Button>
-      </div>
+      </Segment>
     );
   }
 }
@@ -77,4 +114,8 @@ const mapStateToProps = (store, ownProps) => ({
   currentUser: store.currentUser,
 })
 
-export default withRouter(connect(mapStateToProps)(EditUserInfo));
+const mapDispatchToProps = (dispatch) => ({
+  editUser: (userObj) => {dispatch( editUser(userObj) )}
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditUserInfo));

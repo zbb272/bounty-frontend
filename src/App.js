@@ -37,7 +37,6 @@ class App extends Component {
   }
 
   render(){
-    console.log("Component: ", this.props.currentUser)
     return (
       <div className="App">
         <Switch>
