@@ -13,17 +13,19 @@ const BountyCardSmall = (props) => {
 
   return(
     <Segment>
-      <Grid columns="equal">
+      <Grid>
         <Grid.Row>
-          <Grid.Column>
+          <Grid.Column width={2}>
             <Icon.Group size="big">
               <Icon name="circle outline"/>
-              <Icon color="teal" name="dollar"/>
+              <Icon color="teal" name="shekel"/>
             </Icon.Group>
-            <div><Link to="/login">{props.bounty.title}</Link></div>
-            <div><Link to="/login">{props.bounty.project.name}</Link></div>
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column width={7}>
+            <h4><Link to="/login">{props.bounty.title}</Link></h4>
+            <div><Link to={`/projects/${props.project.id}`}>{props.project.name}</Link></div>
+          </Grid.Column>
+          <Grid.Column width={7}>
             <p>{props.bounty.status}</p>
           </Grid.Column>
         </Grid.Row>

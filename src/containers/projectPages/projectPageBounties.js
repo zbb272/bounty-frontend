@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
 import ProjectInformation from './projectInformation'
 import ProjectFiles from '../../components/projectPageComponents/projectFiles'
+import ProjectBounties from '../../components/projectPageComponents/projectBounties'
 import { getProjectWithId } from '../../redux/actionCreators'
 
 const loginFormStyle = {
@@ -16,7 +17,7 @@ const bountiesStyle = {
   marginRight: 10,
 }
 
-class ProjectPage extends Component {
+class ProjectPageBounties extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -50,12 +51,12 @@ class ProjectPage extends Component {
               <Grid.Column width={11}>
                 <Segment style={bountiesStyle}>
                   <Menu attached tabular widths={3}>
-                    <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
+                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
+                    <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
                     <Menu.Item as='a'>Contributors</Menu.Item>
                   </Menu>
                   <Segment attached>
-                    <ProjectFiles />
+                    <ProjectBounties />
                   </Segment>
                 </Segment>
               </Grid.Column>
@@ -79,4 +80,4 @@ const mapDispatchToProps = (dispatch) => ({
   getProjectWithId: (projectId)=>{dispatch( getProjectWithId(projectId) )},
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectPageBounties));

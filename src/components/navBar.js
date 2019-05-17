@@ -60,7 +60,7 @@ class NavBar extends Component{
       <div>
         <Menu fixed='top' inverted style={menuStyle}>
           <Container style={containerStyle}>
-            <Menu.Item as={Link} to="/login" header>
+            <Menu.Item as={Link} to="/dashboard" header>
               <Image src={logo} style={imageStyle} />
               Bounty
             </Menu.Item>

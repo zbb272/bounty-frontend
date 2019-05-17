@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
+import BountyCardSmall from "../bountyCardComponents/bountyCardSmall"
 
 const imageStyle = {
   maxWidth: 75,
@@ -14,19 +15,16 @@ const headerStyle = {
   marginBottom: "10px",
 }
 
-class ProjectFiles extends Component{
+class ProjectBounties extends Component{
 
   render(){
     return(
       <div>
-        <Segment>
-          <p><a href={`https://github.com/${this.props.currentProject.github_url}`} alt="medium blogs" target="_blank" rel="noopener noreferrer">Link to Github Repository of Project</a></p>
-          <Segment>
-            <p></p>
-          </Segment>
-        </Segment>
+      <Segment>
+        {this.props.currentProject.bounties.map(bount => <BountyCardSmall key={bount.id} bounty={bount} project={this.props.currentProject}/> )}
+      </Segment>
       </div>
-    );
+    )
   }
 }
 
@@ -34,4 +32,4 @@ const mapStateToProps = (store, ownProps) => ({
   currentProject: store.currentProject,
 })
 
-export default withRouter(connect(mapStateToProps)(ProjectFiles));
+export default withRouter(connect(mapStateToProps)(ProjectBounties));
