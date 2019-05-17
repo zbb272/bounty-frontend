@@ -16,7 +16,7 @@ const ProjectCardSmall = (props) => {
       <Grid columns="equal">
         <Grid.Row>
           <Grid.Column>
-            <Link to="/login">{props.project.name}</Link>
+            <Link to={`/projects/${props.project.id}`}>{props.project.name}</Link>
           </Grid.Column>
           <Grid.Column>
             <p style={progressBarStyle}>{props.project.progress}%</p>

@@ -1,17 +1,5 @@
 import {combineReducers} from 'redux'
-import { EDIT_USER, CREATING_USER, LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
-
-//EXAMPLE REDUCER
-// const loadingReducer = (oldState=false, action) => {
-//   switch (action.type) {
-//     case LOADING_PAINTINGS:
-//       return true
-//     case FETCHED_PAINTINGS:
-//       return false
-//     default:
-//       return oldState
-//   }
-// }
+import { FETCHED_PROJECT, EDIT_USER, CREATING_USER, LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
 
 const userReducer = (oldState=false, action) => {
   switch(action.type){
@@ -37,15 +25,19 @@ const authReducer = (oldState=false, action) => {
   }
 }
 
+const projectReducer = (oldState=false, action) => {
+  switch(action.type){
+    case FETCHED_PROJECT:
+      return action.payload
+    default:
+      return false
+  }
+}
 
-
-//map the key: reducer
 const rootReducer = combineReducers({
   currentUser: userReducer,
-  userAuthenticated: authReducer
-  // searchText: searchTextReducer,
-  // paintings: paintingsReducer,
-  // loading: loadingReducer
+  userAuthenticated: authReducer,
+  currentProject: projectReducer
 })
 
 export default rootReducer

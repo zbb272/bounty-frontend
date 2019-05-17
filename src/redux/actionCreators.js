@@ -1,7 +1,8 @@
 // //actionCreators
-import { EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
+import { FETCHED_PROJECT, EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
 
 const USERS_URL = 'http://localhost:3000/api/v1/users'
+const PROJECTS_URL = 'http://localhost:3000/api/v1/projects'
 
 function fetchedUser(userObj){
   return {type: FETCHED_USER, payload: userObj}
@@ -92,67 +93,27 @@ function editUser(userObj){
   }
 }
 
-export { editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+function fetchedProject(projectObj){
+  return {type: FETCHED_PROJECT, payload: projectObj}
+}
 
+function getProjectWithId(projectId){
+  return (dispatch) => {
+    fetch(PROJECTS_URL + `/${projectId}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch(fetchedProject(data))
 
-//
-// function onSearch(searchText){
-//   return {type: CHANGING_SEARCH_TEXT, payload: searchText}
-// }
-//
-// function voteForPainting(paintingId){
-//   return {type:VOTE_FOR_PAINTING, payload: paintingId}
-// }
-//
-// function updatePaintingInfo(info){
-//   return {type:UPDATE_PAINTING, payload: info}
-// }
-//
-// function fetchedPaintings(paintingsArray){
-//   return {type: FETCHED_PAINTINGS, payload: paintingsArray}
-// }
-//
-// function loadingPaintings(){
-//   return {type: LOADING_PAINTINGS}
-// }
-//
-// function votingForPainting(paintingId){
-//   return (dispatch, getState) => {
-//     let oldVotes = getState().paintings.find(p => p.id === paintingId).votes
-//     fetch(`${URL}/${paintingId}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type" : "application/json",
-//         "Accept": "application/json"
-//       },
-//       body: {
-//         votes: ++oldVotes
-//       }
-//     }).then(res => res.json())
-//     .then(goodData => {
-//       dispatch(voteForPainting(paintingId))
-//     })
-//     .catch((e) => {
-//       alert("Error, problem with server: " + e.toString())
-//     })
-//   }
-// }
-//
-// function fetchingPaintings(){
-//   return (dispatch) => {
-//     dispatch(loadingPaintings())
-//     fetch(URL)
-//     .then(res => res.json())
-//     .then(paintingsArray => {
-//       // console.log(paintingsArray)
-//       dispatch(fetchedPaintings(paintingsArray))
-//     })
-//   }
-// }
-// //Problem 1: action creators MUST return objects
-// //Want: return a (async)process -> dispatch an action object
-// //Problem 2: we don't have access to the dipatch function object
-//
-//
-// export {onSearch, votingForPainting, updatePaintingInfo,
-//   fetchingPaintings}
+      // if(user === undefined){
+      //   alert("No user found");
+      // }else {
+      //   console.log(project)
+      //   dispatch(fetchedProject(project))
+      // }
+      // dispatch(fetchedUser(data))
+    })
+  }
+}
+
+export { getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
 import logo from './logo.svg';
 import SignUpPage from './containers/signUpPage';
 import LoginPage from './containers/loginPage';
 import ProfileDashboardPage from './containers/profileDashboardPage'
 import EditProfileDashboardPage from './containers/editProfileDashboardPage'
+import ProjectPage from './containers/projectPages/projectPage'
 import './App.css';
 import { fetchedUser, authenticatedUser } from './redux/actionCreators'
 
@@ -39,19 +40,29 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <Switch>
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/signup" component={SignUpPage} />
-          <Route exact path="/dashboard" component={ProfileDashboardPage} />
-          <Route exact path="/edit" component={EditProfileDashboardPage} />
-        </Switch>
+          { !this.props.userAuthenticated ?
+            <Switch>
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/signup" component={SignUpPage} />
+              <Route component={LoginPage}/>
+            </Switch>
+          :
+            <Switch>
+              <Route exact path="/dashboard" component={ProfileDashboardPage} />
+              <Route exact path="/edit" component={EditProfileDashboardPage} />
+              <Route path="/projects/:id" component={ProjectPage} />
+              <Route component={ProfileDashboardPage}/>
+            </Switch>
+          }
+
       </div>
     );
   }
 }
 
 const mapStateToProps = (store, ownProps) => ({
-  currentUser: store.currentUser
+  currentUser: store.currentUser,
+  userAuthenticated: store.userAuthenticated
 })
 
 const mapDispatchToProps = (dispatch) => ({
