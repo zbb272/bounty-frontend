@@ -4,10 +4,13 @@ import {connect} from 'react-redux'
 import logo from './logo.svg';
 import SignUpPage from './containers/signUpPage';
 import LoginPage from './containers/loginPage';
+import DashboardPage from './containers/dashboardPages/dashboardPage'
 import ProfileDashboardPage from './containers/profileDashboardPage'
 import EditProfileDashboardPage from './containers/editProfileDashboardPage'
 import ProjectPage from './containers/projectPages/projectPage'
 import ProjectPageBounties from './containers/projectPages/projectPageBounties'
+import ProjectPageContributors from './containers/projectPages/projectPageContributors'
+import ProjectPageEdit from './containers/projectPages/projectPageEdit'
 import './App.css';
 import { fetchedUser, authenticatedUser } from './redux/actionCreators'
 
@@ -49,11 +52,14 @@ class App extends Component {
             </Switch>
           :
             <Switch>
-              <Route exact path="/dashboard" component={ProfileDashboardPage} />
-              <Route exact path="/edit" component={EditProfileDashboardPage} />
+              <Route exact path="/dashboard" component={DashboardPage} />
+              <Route path="/users/:id/edit" component={EditProfileDashboardPage} />
+              <Route path="/users/:id" component={ProfileDashboardPage} />
               <Route path="/projects/:id/bounties" component={ProjectPageBounties} />
+              <Route path="/projects/:id/contributors" component={ProjectPageContributors} />
+              <Route path="/projects/:id/edit" component={ProjectPageEdit} />
               <Route path="/projects/:id" component={ProjectPage} />
-              <Route component={ProfileDashboardPage}/>
+              <Route component={DashboardPage}/>
             </Switch>
           }
 

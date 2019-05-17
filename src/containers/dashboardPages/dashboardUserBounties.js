@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
 import {connect} from 'react-redux';
-import ProjectCardSmall from '../components/projectCardComponents/projectCardSmall'
+import BountyCardSmall from '../../components/bountyCardComponents/bountyCardSmall'
 
 const userInfoStyle = {
 }
 
-class UserProjects extends Component {
+class DashboardUserBounties extends Component {
   render(){
     return(
       <div className='user-information' style={userInfoStyle}>
       <Segment>
-        {this.props.targetUser.projects.map(proj => <ProjectCardSmall project={proj}/> )}
+        {this.props.currentUser.bounties.map(bount => <BountyCardSmall bounty={bount}/> )}
       </Segment>
       </div>
     )
@@ -19,7 +19,7 @@ class UserProjects extends Component {
 }
 
 const mapStateToProps = (store, ownProps) => ({
-  targetUser: store.targetUser,
+  currentUser: store.currentUser,
 })
 
-export default connect(mapStateToProps)(UserProjects);
+export default connect(mapStateToProps)(DashboardUserBounties);

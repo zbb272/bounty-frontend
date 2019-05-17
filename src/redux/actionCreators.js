@@ -1,5 +1,5 @@
 // //actionCreators
-import { FETCHED_PROJECT, EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
+import { FETCHED_TARGET_USER, FETCHED_PROJECT, EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
 
 const USERS_URL = 'http://localhost:3000/api/v1/users'
 const PROJECTS_URL = 'http://localhost:3000/api/v1/projects'
@@ -37,6 +37,20 @@ function loginUser(credentials){
         localStorage.setItem("currentUser", JSON.stringify(user));
       }
       // dispatch(fetchedUser(data))
+    })
+  }
+}
+
+function fetchedTargetUser(userObj){
+  return {type: FETCHED_TARGET_USER, payload: userObj}
+}
+
+function getUserWithId(userId){
+  return (dispatch) => {
+    fetch(USERS_URL + `/${userId}`)
+    .then(res => res.json())
+    .then(data => {
+      dispatch(fetchedTargetUser(data))
     })
   }
 }
@@ -102,18 +116,26 @@ function getProjectWithId(projectId){
     fetch(PROJECTS_URL + `/${projectId}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       dispatch(fetchedProject(data))
-
-      // if(user === undefined){
-      //   alert("No user found");
-      // }else {
-      //   console.log(project)
-      //   dispatch(fetchedProject(project))
-      // }
-      // dispatch(fetchedUser(data))
     })
   }
 }
 
-export { getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+function editProject(projObj){
+  return (dispatch) => {
+    fetch(PROJECTS_URL + `/${projObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(projObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(fetchedProject(data))
+      localStorage.setItem("currentProject", JSON.stringify(data));
+    })
+  }
+}
+
+export { getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}

@@ -3,9 +3,8 @@ import { Grid, Segment, Icon, Menu } from 'semantic-ui-react';
 import { Redirect, Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
-import ProjectInformation from './projectInformation'
+import ProjectEditInfo from '../../components/projectPageComponents/projectEditInfo'
 import ProjectFiles from '../../components/projectPageComponents/projectFiles'
-import ProjectBounties from '../../components/projectPageComponents/projectBounties'
 import { getProjectWithId } from '../../redux/actionCreators'
 
 const loginFormStyle = {
@@ -17,7 +16,7 @@ const bountiesStyle = {
   marginRight: 10,
 }
 
-class ProjectPageBounties extends Component {
+class ProjectPageEdit extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -45,18 +44,18 @@ class ProjectPageBounties extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column width={5}>
-                <ProjectInformation />
+                <ProjectEditInfo />
               </Grid.Column>
 
               <Grid.Column width={11}>
                 <Segment style={bountiesStyle}>
                   <Menu attached tabular widths={3}>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
-                    <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
+                    <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
+                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
                     <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
                   </Menu>
                   <Segment attached>
-                    <ProjectBounties />
+                    <ProjectFiles />
                   </Segment>
                 </Segment>
               </Grid.Column>
@@ -80,4 +79,4 @@ const mapDispatchToProps = (dispatch) => ({
   getProjectWithId: (projectId)=>{dispatch( getProjectWithId(projectId) )},
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectPageBounties));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectPageEdit));

@@ -76,10 +76,10 @@ class EditUserInfo extends Component{
         </Segment>
         <Form size='large' onSubmit={ this.onFormSubmit }>
           <Segment stacked style={segmentStyle}>
-            <Form.Input fluid size="big" icon='user' iconPosition='left' placeholder="Email" value={this.state.username} onChange={
-                e => { this.setState({email: e.target.value})}
+            <Form.Input fluid size="big" icon='user' iconPosition='left' placeholder="Username" value={this.state.username} onChange={
+                e => { this.setState({username: e.target.value})}
               } />
-            <Form.Input fluid icon='user' iconPosition='left' placeholder="Username" value={this.state.email} onChange={
+            <Form.Input fluid icon='user' iconPosition='left' placeholder="Email" value={this.state.email} onChange={
                 e => { this.setState({email: e.target.value})}
               } />
             <Form.Input fluid icon='github' iconPosition='left' placeholder="Github URL" value={this.state.github} onChange={

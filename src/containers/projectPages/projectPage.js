@@ -25,10 +25,10 @@ class ProjectPage extends Component {
   }
 
   componentDidMount(){
-    if(!this.state.currentProject){
+    if(!this.props.currentProject){
       this.props.getProjectWithId(this.state.projectId)
     }
-    else if(this.state.currentProject.id !== this.stat.projectId){
+    else if(this.props.currentProject.id !== this.state.projectId){
       this.props.getProjectWithId(this.state.projectId)
     }
   }
@@ -52,7 +52,7 @@ class ProjectPage extends Component {
                   <Menu attached tabular widths={3}>
                     <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
                     <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
-                    <Menu.Item as='a'>Contributors</Menu.Item>
+                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
                   </Menu>
                   <Segment attached>
                     <ProjectFiles />

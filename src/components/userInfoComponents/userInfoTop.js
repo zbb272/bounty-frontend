@@ -20,12 +20,18 @@ class UserInfoTop extends Component{
     return(
       <div>
         <Segment>
-          <h2>{this.props.currentUser.username}</h2>
-          <p>Github: {this.props.currentUser.github_url}</p>
-          <p>Description: {this.props.currentUser.description}</p>
-          <p><Link to={"/edit"}>Edit Profile</Link></p>
-          <p>Current Balance: $0.00</p>
-          <p><Link to={"/login"}>Transfer Funds</Link></p>
+          <h2>{this.props.targetUser.username}</h2>
+          <p>Github: {this.props.targetUser.github_url}</p>
+          <p>Description: {this.props.targetUser.description}</p>
+          {this.props.targetUser.id === this.props.currentUser.id ?
+            <React.Fragment>
+            <p><Link to={"/edit"}>Edit Profile</Link></p>
+            <p>Current Balance: $0.00</p>
+            <p><Link to={"/login"}>Transfer Funds</Link></p>
+            </React.Fragment>
+            :
+            null
+          }
         </Segment>
       </div>
     );
@@ -34,6 +40,7 @@ class UserInfoTop extends Component{
 
 const mapStateToProps = (store, ownProps) => ({
   currentUser: store.currentUser,
+  targetUser: store.targetUser,
 })
 
 export default withRouter(connect(mapStateToProps)(UserInfoTop));

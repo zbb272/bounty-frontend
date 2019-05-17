@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import { FETCHED_PROJECT, EDIT_USER, CREATING_USER, LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
+import { FETCHED_TARGET_USER, FETCHED_PROJECT, EDIT_USER, CREATING_USER, LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
 
 const userReducer = (oldState=false, action) => {
   switch(action.type){
@@ -34,10 +34,20 @@ const projectReducer = (oldState=false, action) => {
   }
 }
 
+const targetUserReducer = (oldState=false, action) => {
+  switch(action.type){
+    case FETCHED_TARGET_USER:
+      return action.payload
+    default:
+      return false
+  }
+}
+
 const rootReducer = combineReducers({
   currentUser: userReducer,
   userAuthenticated: authReducer,
-  currentProject: projectReducer
+  currentProject: projectReducer,
+  targetUser: targetUserReducer,
 })
 
 export default rootReducer

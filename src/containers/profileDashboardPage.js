@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Segment } from 'semantic-ui-react';
+import { Grid, Segment, Icon } from 'semantic-ui-react';
 import { Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../components/navBar';
 import UserInformation from './userInformation'
 import UserProjects from './userProjects'
 import UserBounties from './userBounties'
+import { getUserWithId } from '../redux/actionCreators'
 
 const loginFormStyle = {
   height: "100%",
@@ -17,43 +18,56 @@ const bountiesStyle = {
 }
 
 class ProfileDashboardPage extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      userId: parseInt(this.props.match.params.id),
+    }
+  }
+
+  componentDidMount(){
+    if(!this.props.targetUser){
+      this.props.getUserWithId(this.state.userId)
+    }
+    else if(this.props.targetUser.id !== this.state.userId){
+      this.props.getUserWithId(this.state.userId)
+    }
+  }
+
   render(){
     return(
       <div>
-        { !this.props.userAuthenticated ?
-        <Redirect to={{
-          pathname: "/login"
-        }}/>
-        :
         <div className='dashboard-page' style={loginFormStyle}>
           <NavBar />
-          <Grid>
-            <Grid.Row>
-              <Grid.Column width={5}>
-                <UserInformation />
-              </Grid.Column>
+            { !this.props.targetUser ?
+              <div><Icon loading size='big' name='circle notch' /></div>
+            :
+              <Grid>
+                <Grid.Row>
+                  <Grid.Column width={5}>
+                    <UserInformation />
+                  </Grid.Column>
 
-              <Grid.Column width={11}>
-                <Segment style={bountiesStyle}>
-                  <Grid columns="equal">
-                    <Grid.Row columns="equal">
-                    <Grid.Column>
-                      <h1>Current Projects</h1>
-                      <UserProjects />
-                    </Grid.Column>
-                    <Grid.Column>
-                      <h1>Current Bounties</h1>
-                      <UserBounties />
-                    </Grid.Column>
-                    </Grid.Row>
-                  </Grid>
-                </Segment>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-
+                  <Grid.Column width={11}>
+                    <Segment style={bountiesStyle}>
+                      <Grid columns="equal">
+                        <Grid.Row columns="equal">
+                        <Grid.Column>
+                          <h1>Current Projects</h1>
+                          <UserProjects />
+                        </Grid.Column>
+                        <Grid.Column>
+                          <h1>Current Bounties</h1>
+                          <UserBounties />
+                        </Grid.Column>
+                        </Grid.Row>
+                      </Grid>
+                    </Segment>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            }
         </div>
-        }
       </div>
     )
   }
@@ -61,7 +75,12 @@ class ProfileDashboardPage extends Component {
 
 const mapStateToProps = (store, ownProps) => ({
   currentUser: store.currentUser,
-  userAuthenticated: store.userAuthenticated
+  userAuthenticated: store.userAuthenticated,
+  targetUser: store.targetUser,
 })
 
-export default withRouter(connect(mapStateToProps)(ProfileDashboardPage));
+const mapDispatchToProps = (dispatch) => ({
+  getUserWithId: (userId)=>{dispatch( getUserWithId(userId) )},
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileDashboardPage));

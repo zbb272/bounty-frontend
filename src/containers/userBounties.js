@@ -11,7 +11,7 @@ class UserBounties extends Component {
     return(
       <div className='user-information' style={userInfoStyle}>
       <Segment>
-        {this.props.currentUser.bounties.map(bount => <BountyCardSmall bounty={bount}/> )}
+        {this.props.targetUser.bounties.map(bount => <BountyCardSmall bounty={bount}/> )}
       </Segment>
       </div>
     )
@@ -19,7 +19,7 @@ class UserBounties extends Component {
 }
 
 const mapStateToProps = (store, ownProps) => ({
-  currentUser: store.currentUser,
+  targetUser: store.targetUser,
 })
 
 export default connect(mapStateToProps)(UserBounties);

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
 import ProjectInformation from './projectInformation'
 import ProjectFiles from '../../components/projectPageComponents/projectFiles'
-import ProjectBounties from '../../components/projectPageComponents/projectBounties'
+import ProjectContributors from '../../components/projectPageComponents/projectContributors'
 import { getProjectWithId } from '../../redux/actionCreators'
 
 const loginFormStyle = {
@@ -13,7 +13,7 @@ const loginFormStyle = {
   marginTop: "25%",
 }
 
-const bountiesStyle = {
+const contributionsStyle = {
   marginRight: 10,
 }
 
@@ -49,14 +49,14 @@ class ProjectPageContributors extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <Segment style={bountiesStyle}>
+                <Segment style={contributionsStyle}>
                   <Menu attached tabular widths={3}>
                     <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
-                    <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
-                    <Menu.Item as='a'>Contributors</Menu.Item>
+                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
+                    <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
                   </Menu>
                   <Segment attached>
-                    <ProjectBounties />
+                    <ProjectContributors />
                   </Segment>
                 </Segment>
               </Grid.Column>
