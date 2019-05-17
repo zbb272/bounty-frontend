@@ -1,5 +1,5 @@
 // //actionCreators
-import { FETCHED_TARGET_USER, FETCHED_PROJECT, EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
+import { LOGOUT_USER, UNAUTHENTICATE_USER, FETCHED_TARGET_USER, FETCHED_PROJECT, EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
 
 const USERS_URL = 'http://localhost:3000/api/v1/users'
 const PROJECTS_URL = 'http://localhost:3000/api/v1/projects'
@@ -138,4 +138,15 @@ function editProject(projObj){
   }
 }
 
-export { getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+function unAuthenticateUser(){
+  return {type: UNAUTHENTICATE_USER}
+}
+
+function logoutUser(){
+  if(localStorage.hasOwnProperty("currentUser")){
+    localStorage.removeItem("currentUser");
+  }
+  return {type: LOGOUT_USER}
+}
+
+export { unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}

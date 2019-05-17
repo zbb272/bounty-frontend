@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import { FETCHED_TARGET_USER, FETCHED_PROJECT, EDIT_USER, CREATING_USER, LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
+import { UNAUTHENTICATE_USER, LOGOUT_USER, FETCHED_TARGET_USER, FETCHED_PROJECT, EDIT_USER, CREATING_USER, LOADING_USER, FETCHED_USER, AUTHENTICATED_USER } from './actionType'
 
 const userReducer = (oldState=false, action) => {
   switch(action.type){
@@ -11,6 +11,8 @@ const userReducer = (oldState=false, action) => {
       return true
     case EDIT_USER:
       return oldState
+    case LOGOUT_USER:
+      return false
     default:
       return oldState
   }
@@ -20,6 +22,8 @@ const authReducer = (oldState=false, action) => {
   switch(action.type){
     case AUTHENTICATED_USER:
       return true
+    case UNAUTHENTICATE_USER:
+     return false
     default:
       return oldState
   }

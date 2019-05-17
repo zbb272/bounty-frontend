@@ -75,7 +75,7 @@ class NavBar extends Component{
                   }/>
 
             </Form>
-            <Link to={"/login"}>
+            <Link to={"/logout"}>
               <Icon name="user circle" style={accountButtonStyle} size="big" />
             </Link>
           </Container>

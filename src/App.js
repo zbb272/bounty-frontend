@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import logo from './logo.svg';
 import SignUpPage from './containers/signUpPage';
 import LoginPage from './containers/loginPage';
+import logoutPage from './containers/logoutPage';
 import DashboardPage from './containers/dashboardPages/dashboardPage'
 import ProfileDashboardPage from './containers/profileDashboardPage'
 import EditProfileDashboardPage from './containers/editProfileDashboardPage'
@@ -53,6 +54,7 @@ class App extends Component {
           :
             <Switch>
               <Route exact path="/dashboard" component={DashboardPage} />
+              <Route exact path="/logout" component={logoutPage} />
               <Route path="/users/:id/edit" component={EditProfileDashboardPage} />
               <Route path="/users/:id" component={ProfileDashboardPage} />
               <Route path="/projects/:id/bounties" component={ProjectPageBounties} />
