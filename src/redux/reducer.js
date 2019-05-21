@@ -34,7 +34,7 @@ const projectReducer = (oldState=false, action) => {
     case FETCHED_PROJECT:
       return action.payload
     default:
-      return false
+      return oldState
   }
 }
 

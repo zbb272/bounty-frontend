@@ -148,7 +148,6 @@ function getBountyWithId(bountyId){
     fetch(BOUNTIES_URL + `/${bountyId}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       dispatch(fetchedBounty(data))
     })
   }

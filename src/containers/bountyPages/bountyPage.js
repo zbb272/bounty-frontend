@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
 import ProjectInformation from '../projectPages/projectInformation'
 import ProjectFiles from '../../components/projectPageComponents/projectFiles'
+import BountyInfoTop from '../../components/bountyPageComponents/bountyInfoTop'
 import { getProjectWithId, getBountyWithId } from '../../redux/actionCreators'
 
 const loginFormStyle = {
@@ -41,8 +42,6 @@ class BountyPage extends Component {
   }
 
   render(){
-    console.log(this.props.currentProject)
-    console.log(this.props.currentBounty)
     return(
       <div>
         { !this.props.currentProject || !this.props.currentBounty ?
@@ -57,16 +56,8 @@ class BountyPage extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <h1>Bounty View Page</h1>
                 <Segment style={bountiesStyle}>
-                  <Menu attached tabular widths={3}>
-                    <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
-                  </Menu>
-                  <Segment attached>
-                    <ProjectFiles />
-                  </Segment>
+                  <BountyInfoTop bountyObj={this.props.currentBounty} projObj={this.props.currentProject} />
                 </Segment>
               </Grid.Column>
             </Grid.Row>
