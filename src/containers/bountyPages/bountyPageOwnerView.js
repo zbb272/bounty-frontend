@@ -1,50 +1,29 @@
 import React, { Component } from 'react';
-import { Grid, Segment, Icon, Menu } from 'semantic-ui-react';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { Segment } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
-import NavBar from '../../components/navBar';
-import ProjectInformation from '../projectPages/projectInformation'
-import ProjectFiles from '../../components/projectPageComponents/projectFiles'
-import BountyInfoTop from '../../components/bountyPageComponents/bountyInfoTop'
+import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
 import { getProjectWithId } from '../../redux/actionCreators'
 
-const loginFormStyle = {
-  height: "100%",
-  marginTop: "25%",
-}
-
-const bountiesStyle = {
-  marginRight: 10,
-}
 
 class BountyPageOwnerView extends Component {
   constructor(props){
     super(props)
     this.state = {
       projectId: parseInt(this.props.match.params.id),
-    }
-  }
-
-  componentDidMount(){
-    if(!this.props.currentProject){
-      this.props.getProjectWithId(this.state.projectId)
-    }
-    else if(this.props.currentProject.id !== this.state.projectId){
-      this.props.getProjectWithId(this.state.projectId)
+      bountyId: parseInt(this.props.match.params.bountyId),
     }
   }
 
   render(){
     return(
       <div>
-        { !this.props.currentProject ?
-          <div><Icon loading size='big' name='circle notch' /></div>
-        :
-        <div className='bonuty-owner-page' style={loginFormStyle}>
-          <BountyInfoTop />
-
-        </div>
-        }
+        <h1>Applicants For Bounty</h1>
+        <Segment>
+          {this.props.currentBounty.applications.map(app =>
+            <ApplicationCardSmall key={app.id} application={app}/>
+          )}
+        </Segment>
       </div>
     )
   }
@@ -53,7 +32,8 @@ class BountyPageOwnerView extends Component {
 const mapStateToProps = (store, ownProps) => ({
   currentUser: store.currentUser,
   userAuthenticated: store.userAuthenticated,
-  currentProject: store.currentProject
+  currentProject: store.currentProject,
+  currentBounty: store.currentBounty,
 })
 
 const mapDispatchToProps = (dispatch) => ({
