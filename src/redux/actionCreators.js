@@ -1,8 +1,9 @@
 // //actionCreators
-import { LOGOUT_USER, UNAUTHENTICATE_USER, FETCHED_TARGET_USER, FETCHED_PROJECT, EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
+import { FETCHED_BOUNTY, LOGOUT_USER, UNAUTHENTICATE_USER, FETCHED_TARGET_USER, FETCHED_PROJECT, EDIT_USER, CREATING_USER, FETCHED_USER, LOADING_USER, AUTHENTICATED_USER } from './actionType'
 
 const USERS_URL = 'http://localhost:3000/api/v1/users'
 const PROJECTS_URL = 'http://localhost:3000/api/v1/projects'
+const BOUNTIES_URL = 'http://localhost:3000/api/v1/bounties'
 
 function fetchedUser(userObj){
   return {type: FETCHED_USER, payload: userObj}
@@ -138,6 +139,21 @@ function editProject(projObj){
   }
 }
 
+function fetchedBounty(bountyObj){
+  return {type: FETCHED_BOUNTY, payload: bountyObj}
+}
+
+function getBountyWithId(bountyId){
+  return (dispatch) => {
+    fetch(BOUNTIES_URL + `/${bountyId}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch(fetchedBounty(data))
+    })
+  }
+}
+
 function unAuthenticateUser(){
   return {type: UNAUTHENTICATE_USER}
 }
@@ -149,4 +165,4 @@ function logoutUser(){
   return {type: LOGOUT_USER}
 }
 
-export { unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+export { getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}

@@ -12,6 +12,7 @@ import ProjectPage from './containers/projectPages/projectPage'
 import ProjectPageBounties from './containers/projectPages/projectPageBounties'
 import ProjectPageContributors from './containers/projectPages/projectPageContributors'
 import ProjectPageEdit from './containers/projectPages/projectPageEdit'
+import BountyPage from './containers/bountyPages/bountyPage'
 import './App.css';
 import { fetchedUser, authenticatedUser } from './redux/actionCreators'
 
@@ -57,6 +58,7 @@ class App extends Component {
               <Route exact path="/logout" component={logoutPage} />
               <Route path="/users/:id/edit" component={EditProfileDashboardPage} />
               <Route path="/users/:id" component={ProfileDashboardPage} />
+              <Route path="/projects/:id/bounties/:bountyId" component={BountyPage} />
               <Route path="/projects/:id/bounties" component={ProjectPageBounties} />
               <Route path="/projects/:id/contributors" component={ProjectPageContributors} />
               <Route path="/projects/:id/edit" component={ProjectPageEdit} />

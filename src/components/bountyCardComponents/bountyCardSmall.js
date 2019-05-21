@@ -22,7 +22,7 @@ const BountyCardSmall = (props) => {
             </Icon.Group>
           </Grid.Column>
           <Grid.Column width={7}>
-            <h4><Link to="/login">{props.bounty.title}</Link></h4>
+            <h4><Link to={`/projects/${props.project.id}/bounties/${props.bounty.id}`}>{props.bounty.title}</Link></h4>
             <div><Link to={`/projects/${props.project.id}`}>{props.project.name}</Link></div>
           </Grid.Column>
           <Grid.Column width={7}>
