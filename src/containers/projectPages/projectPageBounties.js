@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Segment, Icon, Menu } from 'semantic-ui-react';
+import { Grid, Segment, Icon, Menu, Button } from 'semantic-ui-react';
 import { Redirect, Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
@@ -56,6 +56,12 @@ class ProjectPageBounties extends Component {
                     <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
                   </Menu>
                   <Segment attached>
+                    {this.props.currentProject.user.id === this.props.currentUser.id ?
+                      <p style={{textAlign: "left"}}><Link to={`/projects/${this.props.currentProject.id}/bounties/new`}>
+                        <Button color="blue" >Create a new bounty</Button></Link></p>
+                      : null
+                    }
+
                     <ProjectBounties />
                   </Segment>
                 </Segment>

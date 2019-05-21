@@ -40,17 +40,23 @@ class BountyPageUserView extends Component {
     } else if(this.props.currentBounty.status === "working"){
       app = this.props.currentUser.applications.find(app => app.bounty_id === this.state.bountyId);
       if(app !== undefined){
-        comp.push(<h1>Application is being worked on by you</h1>)
+        comp.push(<h1>Bounty is being worked on by you</h1>)
+      }
+      else {
+        comp.push(<h1>This Bounty is being worked on by someone.</h1>)
       }
     } else if(this.props.currentBounty.status === "cancelled"){
       app = this.props.currentUser.applications.find(app => app.bounty_id === this.state.bountyId);
       if(app !== undefined){
-        comp.push(<h1>Application is cancelled</h1>)
+        comp.push(<h1>Bounty is cancelled</h1>)
       }
     } else if(this.props.currentBounty.status === "completed"){
       app = this.props.currentUser.applications.find(app => app.bounty_id === this.state.bountyId);
       if(app !== undefined){
-        comp.push(<h1>Application is completed by you</h1>)
+        comp.push(<h1>Bounty is completed by you</h1>)
+      }
+      else {
+        comp.push(<h1>This bounty is completed by someone already.</h1>)
       }
     }
 
@@ -58,7 +64,6 @@ class BountyPageUserView extends Component {
       comp.push(<BountyPageUserApply />)
     }
 
-    console.log(app)
     return(
       <div>
         {comp}
