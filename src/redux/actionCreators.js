@@ -4,6 +4,7 @@ import { FETCHED_BOUNTY, LOGOUT_USER, UNAUTHENTICATE_USER, FETCHED_TARGET_USER, 
 const USERS_URL = 'http://localhost:3000/api/v1/users'
 const PROJECTS_URL = 'http://localhost:3000/api/v1/projects'
 const BOUNTIES_URL = 'http://localhost:3000/api/v1/bounties'
+const APPLICATIONS_URL = "http://localhost:3000/api/v1/applications"
 
 function fetchedUser(userObj){
   return {type: FETCHED_USER, payload: userObj}
@@ -153,6 +154,99 @@ function getBountyWithId(bountyId){
   }
 }
 
+function approveApplication(applicationObj){
+  let bountyObj = {
+    id: applicationObj.bounty_id,
+    user_id: applicationObj.user_id,
+    status: "working",
+  }
+  return (dispatch) => {
+    fetch(BOUNTIES_URL + `/${bountyObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bountyObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch(fetchedBounty(data))
+    })
+  }
+}
+
+function createApplication(applicationObj){
+  return (dispatch) => {
+    fetch(APPLICATIONS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(applicationObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch(refreshCurrentUser())
+      // dispatch(getUserWithId(data.user.id))
+    })
+  }
+}
+
+function refreshCurrentUser(){
+  let user = localStorage.getItem("currentUser");
+  user = JSON.parse(user);
+  return (dispatch) => {
+    fetch(USERS_URL + `/${user.id}`)
+    .then(res => res.json())
+    .then(user => {
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      dispatch(fetchedUser(user))
+    })
+  }
+}
+
+function ownerCompleteBounty(bountyObj){
+  let newBountyObj = {...bountyObj,
+    status: "completed"
+  }
+  return (dispatch) => {
+    fetch(BOUNTIES_URL + `/${bountyObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBountyObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch(fetchedBounty(data))
+    })
+  }
+}
+
+function ownerCancelBounty(bountyObj){
+  let newBountyObj = {...bountyObj,
+    status: "cancelled"
+  }
+  return (dispatch) => {
+    fetch(BOUNTIES_URL + `/${bountyObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBountyObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch(fetchedBounty(data))
+    })
+  }
+}
+
 function unAuthenticateUser(){
   return {type: UNAUTHENTICATE_USER}
 }
@@ -164,4 +258,4 @@ function logoutUser(){
   return {type: LOGOUT_USER}
 }
 
-export { getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+export { createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}

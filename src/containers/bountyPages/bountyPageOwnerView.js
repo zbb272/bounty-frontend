@@ -3,6 +3,7 @@ import { Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
+import BountyCardProjectOwnerWorking from '../../components/bountyCardComponents/bountyCardProjectOwnerWorking'
 import { getProjectWithId } from '../../redux/actionCreators'
 
 
@@ -16,13 +17,29 @@ class BountyPageOwnerView extends Component {
   }
 
   render(){
+    let applicationsComp = []
+    if(this.props.currentBounty.status === "open" && this.props.currentBounty.applications.length === 0){
+      applicationsComp.push(<h1>Currently no applications for this bounty</h1>)
+    }else if (this.props.currentBounty.status === "open") {
+      applicationsComp = this.props.currentBounty.applications.map(app =>
+        <ApplicationCardSmall key={app.id} application={app}/>
+      )
+    }
     return(
       <div>
-        <h1>Applicants For Bounty</h1>
         <Segment>
-          {this.props.currentBounty.applications.map(app =>
-            <ApplicationCardSmall key={app.id} application={app}/>
-          )}
+          {this.props.currentBounty.status === "open" ?
+            applicationsComp
+          : null }
+          {this.props.currentBounty.status === "working" ?
+            <BountyCardProjectOwnerWorking />
+            : null}
+          {this.props.currentBounty.status === "completed" ?
+            <h1>Bounty has been fulfilled</h1>
+            : null}
+          {this.props.currentBounty.status === "cancelled" ?
+            <h1>Bounty has been cancelled</h1>
+            : null}
         </Segment>
       </div>
     )

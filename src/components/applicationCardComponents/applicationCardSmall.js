@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Icon, Grid, Segment, Button } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
+import {approveApplication} from '../../redux/actionCreators';
 import {connect} from 'react-redux';
 
 class ApplicationCardSmall extends Component {
   constructor(props){
     super(props)
+  }
+
+  approveButtonClickHandler = (event) => {
+    this.props.approveApplication(this.props.application)
   }
 
   render(){
@@ -23,9 +28,10 @@ class ApplicationCardSmall extends Component {
               <p>*USER RATING HERE*</p>
             </Grid.Column>
             <Grid.Column width={7}>
-            <Button color='blue' fluid size='medium'>
-              Approve
-            </Button>
+            {this.props.currentBounty.status === "open" ?
+              <Button onClick={this.approveButtonClickHandler} color='blue' fluid size='medium'>Approve</Button>
+              : null
+            }
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
@@ -46,6 +52,7 @@ const mapStateToProps = (store, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // getProjectWithId: (projectId)=>{dispatch( getProjectWithId(projectId) )},
+  approveApplication: (application) => {dispatch( approveApplication(application) )},
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ApplicationCardSmall));

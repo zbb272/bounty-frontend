@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import { Form, Segment, TextArea, Button } from 'semantic-ui-react';
 import { Redirect, Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
-import NavBar from '../../components/navBar';
-import ProjectInformation from '../projectPages/projectInformation'
-import ProjectFiles from '../../components/projectPageComponents/projectFiles'
-import BountyInfoTop from '../../components/bountyPageComponents/bountyInfoTop'
-import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
-import { getProjectWithId } from '../../redux/actionCreators'
+import { createApplication } from '../../redux/actionCreators'
 
 const loginFormStyle = {
   height: "100%",
@@ -18,7 +13,7 @@ const bountiesStyle = {
   marginRight: 10,
 }
 
-class BountyUserView extends Component {
+class BountyPageUserApply extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -28,8 +23,14 @@ class BountyUserView extends Component {
     }
   }
 
-  onFormSubmit(event){
-    console.log(event.target)
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    let applicationObj = {
+      user_id: this.props.currentUser.id,
+      bounty_id: this.state.bountyId,
+      message: this.state.message,
+    }
+    this.props.createApplication(applicationObj);
   }
 
   render(){
@@ -62,6 +63,7 @@ const mapStateToProps = (store, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // getProjectWithId: (projectId)=>{dispatch( getProjectWithId(projectId) )},
+  createApplication: (applicationObj)=>{dispatch( createApplication(applicationObj) )},
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BountyUserView));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BountyPageUserApply));

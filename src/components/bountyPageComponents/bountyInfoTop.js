@@ -1,6 +1,6 @@
 import React from 'react';
 import { Segment } from 'semantic-ui-react';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 const bountyTopStyle = {
   textAlign: "left",
@@ -11,9 +11,9 @@ const ProjectFiles = (props) => {
     <div style={bountyTopStyle}>
       <Segment>
         <h1>{props.bountyObj.title}</h1>
-        <h3>Bounty Value: {props.bountyObj.value}</h3>
-        <p>Posted By: <a href={`http://localhost:3001/users/${props.bountyObj.project.user_id}`} alt="medium blogs" target="_blank" rel="noopener noreferrer">{props.projObj.user.username}</a></p>
-        <p>Accepted by: {props.bountyObj.user === null ? "None" : props.bountyObj.user.username}</p>
+        <h3>Bounty Value: ${props.bountyObj.amount}</h3>
+        <p>Posted By: <Link to={`/users/${props.bountyObj.project.user_id}`}>{props.projObj.user.username}</Link></p>
+        <p>Accepted by: {props.bountyObj.user === null ? "None" : <Link to={`/users/${props.bountyObj.user.id}`}>{props.bountyObj.user.username}</Link>}</p>
         <Segment>
           <p>Description: {props.bountyObj.description}</p>
         </Segment>

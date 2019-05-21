@@ -7,7 +7,7 @@ import ProjectInformation from '../projectPages/projectInformation'
 import ProjectFiles from '../../components/projectPageComponents/projectFiles'
 import BountyInfoTop from '../../components/bountyPageComponents/bountyInfoTop'
 import BountyPageOwnerView from './bountyPageOwnerView'
-import BountyUserView from './bountyUserView'
+import BountyPageUserView from './bountyPageUserView'
 import { getProjectWithId, getBountyWithId } from '../../redux/actionCreators'
 
 const loginFormStyle = {
@@ -63,7 +63,7 @@ class BountyPage extends Component {
                   <BountyInfoTop bountyObj={this.props.currentBounty} projObj={this.props.currentProject} />
                   {this.props.currentBounty.project.user_id === this.props.currentUser.id ?
                     <BountyPageOwnerView />
-                    : <BountyUserView />
+                    : <BountyPageUserView />
                   }
                 </Segment>
               </Grid.Column>

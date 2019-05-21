@@ -35,6 +35,7 @@ class ProfileDashboardPage extends Component {
   }
 
   render(){
+    console.log(this.props.targetUser)
     return(
       <div>
         <div className='dashboard-page' style={loginFormStyle}>
