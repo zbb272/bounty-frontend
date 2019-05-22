@@ -247,6 +247,24 @@ function ownerCancelBounty(bountyObj){
   }
 }
 
+function createBounty(bountyObj){
+  return (dispatch) => {
+    fetch(BOUNTIES_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bountyObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch(refreshCurrentUser())
+      // dispatch(getUserWithId(data.user.id))
+    })
+  }
+}
+
 function unAuthenticateUser(){
   return {type: UNAUTHENTICATE_USER}
 }
@@ -258,4 +276,4 @@ function logoutUser(){
   return {type: LOGOUT_USER}
 }
 
-export { createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+export { createBounty, createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
