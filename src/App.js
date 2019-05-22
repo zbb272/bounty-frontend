@@ -14,6 +14,7 @@ import ProjectPageContributors from './containers/projectPages/projectPageContri
 import ProjectPageEdit from './containers/projectPages/projectPageEdit'
 import BountyPage from './containers/bountyPages/bountyPage'
 import NewBountyPage from './containers/bountyPages/newBountyPage'
+import NewProjectPage from './containers/projectPages/newProjectPage'
 import './App.css';
 import { fetchedUser, authenticatedUser } from './redux/actionCreators'
 
@@ -57,6 +58,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/dashboard" component={DashboardPage} />
               <Route exact path="/logout" component={logoutPage} />
+              <Route exact path="/projects/new" component={NewProjectPage} />
               <Route path="/users/:id/edit" component={EditProfileDashboardPage} />
               <Route path="/users/:id" component={ProfileDashboardPage} />
               <Route path="/projects/:id/bounties/new" component={NewBountyPage} />

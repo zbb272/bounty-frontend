@@ -33,7 +33,6 @@ function loginUser(credentials){
       if(user === undefined){
         alert("No user found");
       }else {
-        console.log(user)
         dispatch(fetchedUser(user))
         dispatch(authenticatedUser())
         localStorage.setItem("currentUser", JSON.stringify(user));
@@ -170,7 +169,6 @@ function approveApplication(applicationObj){
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       dispatch(fetchedBounty(data))
     })
   }
@@ -187,7 +185,6 @@ function createApplication(applicationObj){
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       dispatch(refreshCurrentUser())
       // dispatch(getUserWithId(data.user.id))
     })
@@ -221,7 +218,6 @@ function ownerCompleteBounty(bountyObj){
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       dispatch(fetchedBounty(data))
     })
   }
@@ -241,7 +237,6 @@ function ownerCancelBounty(bountyObj){
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       dispatch(fetchedBounty(data))
     })
   }
@@ -255,6 +250,23 @@ function createBounty(bountyObj){
         "Content-Type": "application/json",
       },
       body: JSON.stringify(bountyObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(refreshCurrentUser())
+      // dispatch(getUserWithId(data.user.id))
+    })
+  }
+}
+
+function createProject(projectObj){
+  return (dispatch) => {
+    fetch(PROJECTS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(projectObj)
     })
     .then(res => res.json())
     .then(data => {
@@ -276,4 +288,4 @@ function logoutUser(){
   return {type: LOGOUT_USER}
 }
 
-export { createBounty, createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+export { createProject, createBounty, createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}

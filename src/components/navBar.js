@@ -66,6 +66,7 @@ class NavBar extends Component{
             </Menu.Item>
             <Menu.Item as={Link} to="/login" >Bounties</Menu.Item>
             <Menu.Item as={Link} to="/login" >Projects</Menu.Item>
+            <Menu.Item as={Link} to="/projects/new" >Create New Project</Menu.Item>
 
 
             <Form size='large' onSubmit={ this.onFormSubmit } style={formStyle}>
