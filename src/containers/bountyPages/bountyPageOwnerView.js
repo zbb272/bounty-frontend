@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
 import BountyCardProjectOwnerWorking from '../../components/bountyCardComponents/bountyCardProjectOwnerWorking'
 import { getProjectWithId } from '../../redux/actionCreators'
+import { backgroundColor2 } from '../../style/theme'
 
 
 class BountyPageOwnerView extends Component {
@@ -29,7 +30,7 @@ class BountyPageOwnerView extends Component {
       <div>
         <Segment>
           {this.props.currentBounty.status === "open" ?
-            applicationsComp
+            <Segment style={backgroundColor2}>{applicationsComp}</Segment>
           : null }
           {this.props.currentBounty.status === "working" ?
             <BountyCardProjectOwnerWorking />

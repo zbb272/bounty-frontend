@@ -6,14 +6,11 @@ import NavBar from '../../components/navBar';
 import DashboardUserInformation from './dashboardUserInformation'
 import DashboardUserProjects from './dashboardUserProjects'
 import DashboardUserBounties from './dashboardUserBounties'
+import { backgroundColor1, backgroundColor2 } from '../../style/theme'
 
 const loginFormStyle = {
   height: "100%",
   marginTop: "25%",
-}
-
-const bountiesStyle = {
-  marginRight: 10,
 }
 
 class DashboardPage extends Component {
@@ -33,21 +30,25 @@ class DashboardPage extends Component {
                 <DashboardUserInformation />
               </Grid.Column>
 
-              <Grid.Column width={11}>
-                <Segment style={bountiesStyle}>
-                  <Grid columns="equal">
-                    <Grid.Row columns="equal">
-                    <Grid.Column>
-                      <h1>Current Projects</h1>
-                      <DashboardUserProjects />
-                    </Grid.Column>
-                    <Grid.Column>
-                      <h1>Current Bounties</h1>
-                      <DashboardUserBounties />
-                    </Grid.Column>
-                    </Grid.Row>
-                  </Grid>
-                </Segment>
+              <Grid.Column width={11} >
+                <div style={{marginRight: 10}}>
+                  <Segment style={backgroundColor2}>
+                    <Segment >
+                      <Grid columns="equal">
+                        <Grid.Row columns="equal">
+                        <Grid.Column>
+                          <h1>Current Projects</h1>
+                          <DashboardUserProjects />
+                        </Grid.Column>
+                        <Grid.Column>
+                          <h1>Current Bounties</h1>
+                          <DashboardUserBounties />
+                        </Grid.Column>
+                        </Grid.Row>
+                      </Grid>
+                    </Segment>
+                  </Segment>
+                </div>
               </Grid.Column>
             </Grid.Row>
           </Grid>

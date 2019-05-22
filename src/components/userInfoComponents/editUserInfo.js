@@ -3,6 +3,7 @@ import { Icon, Segment, TextArea, Form, Button } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { editUser } from '../../redux/actionCreators';
 import { connect } from "react-redux"
+import { backgroundColor3, backgroundColor2 } from '../../style/theme'
 
 const imageStyle = {
   maxWidth: 75,
@@ -13,10 +14,6 @@ const imageStyle = {
 const headerStyle = {
   color: "#E1EDFF",
   marginBottom: "10px",
-}
-
-const segmentStyle = {
-
 }
 
 class EditUserInfo extends Component{
@@ -70,12 +67,12 @@ class EditUserInfo extends Component{
 
   render(){
     return(
-      <Segment>
+      <Segment style={backgroundColor2}>
         <Segment>
           <Icon name="user" size="massive" />
         </Segment>
         <Form size='large' onSubmit={ this.onFormSubmit }>
-          <Segment stacked style={segmentStyle}>
+          <Segment stacked style={backgroundColor3}>
             <Form.Input fluid size="big" icon='user' iconPosition='left' placeholder="Username" value={this.state.username} onChange={
                 e => { this.setState({username: e.target.value})}
               } />
@@ -88,13 +85,13 @@ class EditUserInfo extends Component{
             <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
                 e => { this.setState({description: e.target.value})}
               } />
-            <Form.Input fluid icon='lock' iconPosition='left' placeholder='New Password' type='password' onChange={
+            <Form.Input style={{marginTop: 75}} fluid icon='lock' iconPosition='left' placeholder='New Password' type='password' onChange={
                 e => { this.setState({newPassword: e.target.value})}
               }  />
             <Form.Input fluid icon='lock' iconPosition='left' placeholder='Confirm New Password' type='password' onChange={
                 e => { this.setState({confNewpassword: e.target.value})}
               }  />
-            <Form.Input fluid icon='lock' iconPosition='left' placeholder='Current Password' type='password' onChange={
+            <Form.Input style={{marginTop: 75}} fluid icon='lock' iconPosition='left' placeholder='Current Password' type='password' onChange={
                 e => { this.setState({password: e.target.value})}
               }  />
             <Button color='blue' fluid size='large'>
@@ -102,7 +99,7 @@ class EditUserInfo extends Component{
             </Button>
           </Segment>
         </Form>
-        <Button color='red' fluid size='large'>
+        <Button style={{marginTop: 15}} color='red' fluid size='large'>
           Delete Profile
         </Button>
       </Segment>

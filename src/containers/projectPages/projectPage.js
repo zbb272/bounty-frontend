@@ -6,6 +6,7 @@ import NavBar from '../../components/navBar';
 import ProjectInformation from './projectInformation'
 import ProjectFiles from '../../components/projectPageComponents/projectFiles'
 import { getProjectWithId } from '../../redux/actionCreators'
+import { backgroundColor2 } from '../../style/theme'
 
 const loginFormStyle = {
   height: "100%",
@@ -48,11 +49,11 @@ class ProjectPage extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <Segment style={bountiesStyle}>
+                <Segment style={bountiesStyle, backgroundColor2}>
                   <Menu attached tabular widths={3}>
                     <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
+                    <Menu.Item style={backgroundColor2} as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
+                    <Menu.Item style={backgroundColor2} as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
                   </Menu>
                   <Segment attached>
                     <ProjectFiles />

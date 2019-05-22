@@ -7,6 +7,7 @@ import ProjectInformation from './projectInformation'
 import ProjectFiles from '../../components/projectPageComponents/projectFiles'
 import ProjectBounties from '../../components/projectPageComponents/projectBounties'
 import { getProjectWithId } from '../../redux/actionCreators'
+import { backgroundColor2 } from '../../style/theme'
 
 const loginFormStyle = {
   height: "100%",
@@ -16,6 +17,7 @@ const loginFormStyle = {
 const bountiesStyle = {
   marginRight: 10,
 }
+
 
 class ProjectPageBounties extends Component {
   constructor(props){
@@ -49,11 +51,11 @@ class ProjectPageBounties extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <Segment style={bountiesStyle}>
+                <Segment style={bountiesStyle, backgroundColor2}>
                   <Menu attached tabular widths={3}>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
+                    <Menu.Item style={backgroundColor2} as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
                     <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
+                    <Menu.Item style={backgroundColor2} as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
                   </Menu>
                   <Segment attached>
                     {this.props.currentProject.user.id === this.props.currentUser.id ?

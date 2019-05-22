@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
+import { backgroundColor1 } from '../../style/theme'
 
 const imageStyle = {
   maxWidth: 75,
@@ -21,10 +22,13 @@ class ProjectInfo extends Component{
       <div>
         <Segment>
           <h2>{this.props.currentProject.name}</h2>
-          <p><Link to={`/projects/${this.props.currentProject.id}/edit`}>Edit Project Information</Link></p>
+          {this.props.currentUser.id === this.props.currentProject.user.id ?
+            <p><Link to={`/projects/${this.props.currentProject.id}/edit`}>Edit Project Information</Link></p>
+            : null
+          }
           <p>Project Owner:</p>
           <p><Link to={`/users/${this.props.currentProject.user.id}`}>{this.props.currentProject.user.username}</Link></p>
-          <Segment>
+          <Segment style={backgroundColor1}>
           <p>Description: {this.props.currentProject.description}</p>
           </Segment>
           <p>Project Completion: {this.props.currentProject.progress}</p>
@@ -36,6 +40,7 @@ class ProjectInfo extends Component{
 
 const mapStateToProps = (store, ownProps) => ({
   currentProject: store.currentProject,
+  currentUser: store.currentUser,
 })
 
 export default withRouter(connect(mapStateToProps)(ProjectInfo));

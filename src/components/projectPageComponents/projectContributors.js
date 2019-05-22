@@ -3,6 +3,7 @@ import { Segment } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
 import BountyCardSmall from "../bountyCardComponents/bountyCardSmall"
+import { backgroundColor2 } from '../../style/theme'
 
 const imageStyle = {
   maxWidth: 75,
@@ -20,7 +21,7 @@ class ProjectContributors extends Component{
   render(){
     return(
       <div>
-      <Segment>
+      <Segment style={backgroundColor2}>
         {this.props.currentProject.bounties.map(bount => <BountyCardSmall key={bount.id} bounty={bount} project={this.props.currentProject}/> )}
       </Segment>
       </div>

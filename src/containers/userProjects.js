@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import ProjectCardSmall from '../components/projectCardComponents/projectCardSmall'
+import { backgroundColor2 } from '../style/theme'
 
 const userInfoStyle = {
 }
@@ -10,7 +11,7 @@ class UserProjects extends Component {
   render(){
     return(
       <div className='user-information' style={userInfoStyle}>
-      <Segment>
+      <Segment style={backgroundColor2}>
         {this.props.targetUser.projects.map(proj => <ProjectCardSmall project={proj}/> )}
       </Segment>
       </div>

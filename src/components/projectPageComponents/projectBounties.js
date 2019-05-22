@@ -15,12 +15,16 @@ const headerStyle = {
   marginBottom: "10px",
 }
 
+const segmentStyle = {
+  backgroundColor: "#8DA2C0",
+}
+
 class ProjectBounties extends Component{
 
   render(){
     return(
       <div>
-      <Segment>
+      <Segment style={segmentStyle}>
         {this.props.currentProject.bounties.map(bount => <BountyCardSmall key={bount.id} bounty={bount} project={this.props.currentProject}/> )}
       </Segment>
       </div>

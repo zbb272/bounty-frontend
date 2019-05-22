@@ -5,25 +5,12 @@ import {connect} from 'react-redux'
 import NavBar from '../../components/navBar'
 import ProjectInformation from '../projectPages/projectInformation'
 import { createProject } from '../../redux/actionCreators'
+import { backgroundColor3, backgroundColor2 } from '../../style/theme'
 
 const loginFormStyle = {
   height: "100%",
   marginTop: "25%",
 }
-
-const bountiesStyle = {
-  marginRight: 10,
-}
-
-const segmentStyle = {
-  background: "#031229",
-  maxWidth: "25%",
-}
-
-const formFieldStyle = {
-  maxWidth: "25%",
-}
-
 
 class NewProjectPage extends Component {
   constructor(props){
@@ -58,25 +45,27 @@ class NewProjectPage extends Component {
               </Grid.Column>
 
               <Grid.Column width={12}>
-                <Segment style={bountiesStyle}>
-                  <h2 style={{textAlign: "left"}}>Create New Project</h2>
-                  <Form size='large' onSubmit={ this.onFormSubmit }>
-                    <Segment stacked style={segmentStyle}>
-                      <Form.Input fluid icon='info' iconPosition='left' placeholder='Project Name' onChange={
-                          e => { this.setState({name: e.target.value})}
-                        }/>
-                      <Form.Input fluid icon='github' iconPosition='left' placeholder='Github URL' onChange={
-                          e => { this.setState({githubUrl: e.target.value})}
-                        }/>
-                      <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
-                          e => { this.setState({description: e.target.value})}
-                        } />
+                <Segment style={backgroundColor2}>
+                  <Segment>
+                    <h2 style={{textAlign: "left"}}>Create New Project</h2>
+                    <Form size='large' onSubmit={ this.onFormSubmit }>
+                      <Segment stacked style={backgroundColor3}>
+                        <Form.Input fluid icon='info' iconPosition='left' placeholder='Project Name' onChange={
+                            e => { this.setState({name: e.target.value})}
+                          }/>
+                        <Form.Input fluid icon='github' iconPosition='left' placeholder='Github URL' onChange={
+                            e => { this.setState({githubUrl: e.target.value})}
+                          }/>
+                        <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
+                            e => { this.setState({description: e.target.value})}
+                          } />
 
-                      <Button style={{marginTop: 10}} color='blue' fluid size='large'>
-                        Create Project
-                      </Button>
-                    </Segment>
-                  </Form>
+                        <Button style={{marginTop: 10}} color='blue' fluid size='large'>
+                          Create Project
+                        </Button>
+                      </Segment>
+                    </Form>
+                  </Segment>
                 </Segment>
               </Grid.Column>
               <Grid.Column width={2}>

@@ -9,6 +9,7 @@ import BountyInfoTop from '../../components/bountyPageComponents/bountyInfoTop'
 import BountyPageOwnerView from './bountyPageOwnerView'
 import BountyPageUserView from './bountyPageUserView'
 import { getProjectWithId, getBountyWithId } from '../../redux/actionCreators'
+import { backgroundColor2 } from '../../style/theme'
 
 const loginFormStyle = {
   height: "100%",
@@ -59,13 +60,15 @@ class BountyPage extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <Segment style={bountiesStyle}>
-                  <BountyInfoTop bountyObj={this.props.currentBounty} projObj={this.props.currentProject} />
-                  {this.props.currentBounty.project.user_id === this.props.currentUser.id ?
-                    <BountyPageOwnerView />
-                    : <BountyPageUserView />
-                  }
-                </Segment>
+                <div style={{marginRight: 10}}>
+                  <Segment style={backgroundColor2}>
+                    <BountyInfoTop bountyObj={this.props.currentBounty} projObj={this.props.currentProject} />
+                    {this.props.currentBounty.project.user_id === this.props.currentUser.id ?
+                      <BountyPageOwnerView />
+                      : <BountyPageUserView />
+                    }
+                  </Segment>
+                </div>
               </Grid.Column>
             </Grid.Row>
           </Grid>

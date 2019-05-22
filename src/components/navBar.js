@@ -42,6 +42,12 @@ const accountButtonStyle = {
   marginBottom: "auto",
 }
 
+const homeButtonStyle = {
+  fontSize: 30,
+  marginLeft: 3,
+  fontFamily: "Courier",
+}
+
 class NavBar extends Component{
   constructor(){
     super();
@@ -62,7 +68,7 @@ class NavBar extends Component{
           <Container style={containerStyle}>
             <Menu.Item as={Link} to="/dashboard" header>
               <Image src={logo} style={imageStyle} />
-              Bounty
+              <span style={homeButtonStyle}>Bounty</span>
             </Menu.Item>
             <Menu.Item as={Link} to="/login" >Bounties</Menu.Item>
             <Menu.Item as={Link} to="/login" >Projects</Menu.Item>
