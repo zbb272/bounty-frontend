@@ -8,7 +8,7 @@ import SignUpFooter from '../components/signUpPageComponents/signUpFooter';
 
 const signUpFormStyle = {
   height: "100%",
-  marginTop: "25%",
+  marginTop: 200,
 }
 
 class SignUpPage extends Component {

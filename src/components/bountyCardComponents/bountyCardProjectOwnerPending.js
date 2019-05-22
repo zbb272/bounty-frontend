@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Icon, Grid, Segment, Button } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
-import { ownerCancelBounty} from '../../redux/actionCreators';
+import {ownerCompleteBounty, ownerCancelBounty} from '../../redux/actionCreators';
 import {connect} from 'react-redux';
 
-class BountyCardProjectOwnerWorking extends Component {
+class BountyCardProjectOwnerPending extends Component {
   constructor(props){
     super(props)
   }
@@ -34,9 +34,9 @@ class BountyCardProjectOwnerWorking extends Component {
               <p>*USER RATING HERE*</p>
             </Grid.Column>
             <Grid.Column width={7}>
-            {this.props.currentBounty.status === "working" ?
+            {this.props.currentBounty.status === "pending" ?
               <div>
-                <h3>Bounty being worked on.</h3>
+                <Button onClick={this.completeButtonEventHandler} color='blue' fluid size='medium'>Complete</Button>
                 <Button onClick={this.cancelButtonEventHandler} color='red' fluid size='medium'>Cancel</Button>
               </div>
               : null
@@ -56,7 +56,8 @@ const mapStateToProps = (store, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // getProjectWithId: (projectId)=>{dispatch( getProjectWithId(projectId) )},
+  ownerCompleteBounty: (bounty) => {dispatch( ownerCompleteBounty(bounty) )},
   ownerCancelBounty: (bounty) => {dispatch( ownerCancelBounty(bounty) )},
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BountyCardProjectOwnerWorking));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BountyCardProjectOwnerPending));

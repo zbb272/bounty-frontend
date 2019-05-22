@@ -8,7 +8,7 @@ import LoginFooter from '../components/loginPageComponents/loginFooter';
 
 const loginFormStyle = {
   height: "100%",
-  marginTop: "25%",
+  marginTop: 200,
 }
 
 class LoginPage extends Component {

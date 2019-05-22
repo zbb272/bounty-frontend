@@ -8,11 +8,11 @@ import ProjectFiles from '../../components/projectPageComponents/projectFiles'
 import BountyInfoTop from '../../components/bountyPageComponents/bountyInfoTop'
 import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
 import BountyPageUserApply from '../../components/bountyPageComponents/bountyPageUserApply'
+import BountyCardUserWorking from '../../components/bountyCardComponents/bountyCardUserWorking'
 import { getProjectWithId } from '../../redux/actionCreators'
 
 const loginFormStyle = {
   height: "100%",
-  marginTop: "25%",
 }
 
 const bountiesStyle = {
@@ -40,15 +40,23 @@ class BountyPageUserView extends Component {
     } else if(this.props.currentBounty.status === "working"){
       app = this.props.currentUser.applications.find(app => app.bounty_id === this.state.bountyId);
       if(app !== undefined){
-        comp.push(<h1>Bounty is being worked on by you</h1>)
+        comp.push(<BountyCardUserWorking />)
       }
       else {
         comp.push(<h1>This Bounty is being worked on by someone.</h1>)
       }
-    } else if(this.props.currentBounty.status === "cancelled"){
+    } else if(this.props.currentBounty.status === "pending"){
       app = this.props.currentUser.applications.find(app => app.bounty_id === this.state.bountyId);
       if(app !== undefined){
-        comp.push(<h1>Bounty is cancelled</h1>)
+        comp.push(<h1>Bounty is pending approval from project manager.</h1>)
+      }
+      else {
+        comp.push(<h1>This Bounty is being worked on by someone.</h1>)
+      }
+    } else if(this.props.currentBounty.status.includes("cancelled")){
+      app = this.props.currentUser.applications.find(app => app.bounty_id === this.state.bountyId);
+      if(app !== undefined){
+        comp.push(<h1>Bounty is {this.props.currentBounty.status}</h1>)
       }
     } else if(this.props.currentBounty.status === "completed"){
       app = this.props.currentUser.applications.find(app => app.bounty_id === this.state.bountyId);

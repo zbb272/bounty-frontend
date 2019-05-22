@@ -11,7 +11,7 @@ import { backgroundColor2 } from '../style/theme'
 
 const loginFormStyle = {
   height: "100%",
-  marginTop: "25%",
+  marginTop: 75,
 }
 
 const bountiesStyle = {

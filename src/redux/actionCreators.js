@@ -225,7 +225,7 @@ function ownerCompleteBounty(bountyObj){
 
 function ownerCancelBounty(bountyObj){
   let newBountyObj = {...bountyObj,
-    status: "cancelled"
+    status: "cancelled by owner"
   }
   return (dispatch) => {
     fetch(BOUNTIES_URL + `/${bountyObj.id}`, {
@@ -277,6 +277,44 @@ function createProject(projectObj){
   }
 }
 
+function userCompleteBounty(bountyObj){
+  let newBountyObj = {...bountyObj,
+    status: "pending"
+  }
+  return (dispatch) => {
+    fetch(BOUNTIES_URL + `/${bountyObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBountyObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(fetchedBounty(data))
+    })
+  }
+}
+
+function userCancelBounty(bountyObj){
+  let newBountyObj = {...bountyObj,
+    status: "cancelled by user"
+  }
+  return (dispatch) => {
+    fetch(BOUNTIES_URL + `/${bountyObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBountyObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(fetchedBounty(data))
+    })
+  }
+}
+
 function unAuthenticateUser(){
   return {type: UNAUTHENTICATE_USER}
 }
@@ -288,4 +326,4 @@ function logoutUser(){
   return {type: LOGOUT_USER}
 }
 
-export { createProject, createBounty, createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+export { userCancelBounty, userCompleteBounty, createProject, createBounty, createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}

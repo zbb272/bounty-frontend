@@ -3,6 +3,7 @@ import { Icon, Segment, TextArea, Form, Button } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { editProject } from '../../redux/actionCreators';
 import { connect } from "react-redux"
+import { backgroundColor3, backgroundColor2 } from '../../style/theme'
 
 const imageStyle = {
   maxWidth: 75,
@@ -54,12 +55,12 @@ class ProjectEditInfo extends Component{
   render(){
     return(
       <div className='project-information' style={projectInfoStyle}>
-        <Segment>
+        <Segment style={backgroundColor2}>
           <Segment>
             <Icon name="folder open" size="massive" />
           </Segment>
           <Form size='large' onSubmit={ this.onFormSubmit }>
-            <Segment stacked >
+            <Segment style={backgroundColor3} stacked >
               <Form.Input fluid size="big" icon='folder' iconPosition='left' placeholder="Project Name" value={this.state.name} onChange={
                   e => { this.setState({name: e.target.value})}
                 } />
@@ -69,7 +70,7 @@ class ProjectEditInfo extends Component{
               <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
                   e => { this.setState({description: e.target.value})}
                 } />
-              <Form.Input fluid icon='lock' iconPosition='left' placeholder='Current Password' type='password' onChange={
+              <Form.Input style={{marginTop: 50}} fluid icon='lock' iconPosition='left' placeholder='Current Password' type='password' onChange={
                   e => { this.setState({password: e.target.value})}
                 }  />
               <Button color='blue' fluid size='large'>
@@ -77,7 +78,7 @@ class ProjectEditInfo extends Component{
               </Button>
             </Segment>
           </Form>
-          <Button color='red' fluid size='large'>
+          <Button style={{marginTop: 20}} color='red' fluid size='large'>
             Delete Project
           </Button>
         </Segment>

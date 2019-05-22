@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { Icon, Grid, Segment, Button } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
-import { ownerCancelBounty} from '../../redux/actionCreators';
+import {userCompleteBounty, userCancelBounty} from '../../redux/actionCreators';
 import {connect} from 'react-redux';
 
-class BountyCardProjectOwnerWorking extends Component {
+class BountyCardUserWorking extends Component {
   constructor(props){
     super(props)
   }
 
   completeButtonEventHandler = (event) => {
-    this.props.ownerCompleteBounty(this.props.currentBounty);
+    this.props.userCompleteBounty(this.props.currentBounty);
   }
 
   cancelButtonEventHandler = (event) => {
     if(window.confirm("If you cancel the bounty at this stage you will lose your deposit. Press OK to confirm.")){
-      this.props.ownerCancelBounty(this.props.currentBounty);
+      this.props.userCancelBounty(this.props.currentBounty);
     }
   }
 
@@ -36,7 +36,7 @@ class BountyCardProjectOwnerWorking extends Component {
             <Grid.Column width={7}>
             {this.props.currentBounty.status === "working" ?
               <div>
-                <h3>Bounty being worked on.</h3>
+                <Button onClick={this.completeButtonEventHandler} color='blue' fluid size='medium'>Mark as Complete</Button>
                 <Button onClick={this.cancelButtonEventHandler} color='red' fluid size='medium'>Cancel</Button>
               </div>
               : null
@@ -56,7 +56,8 @@ const mapStateToProps = (store, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // getProjectWithId: (projectId)=>{dispatch( getProjectWithId(projectId) )},
-  ownerCancelBounty: (bounty) => {dispatch( ownerCancelBounty(bounty) )},
+  userCompleteBounty: (bounty) => {dispatch( userCompleteBounty(bounty) )},
+  userCancelBounty: (bounty) => {dispatch( userCancelBounty(bounty) )},
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BountyCardProjectOwnerWorking));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BountyCardUserWorking));

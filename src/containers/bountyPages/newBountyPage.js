@@ -8,7 +8,7 @@ import { getProjectWithId, createBounty } from '../../redux/actionCreators'
 
 const loginFormStyle = {
   height: "100%",
-  marginTop: "25%",
+  marginTop: 75,
 }
 
 const bountiesStyle = {

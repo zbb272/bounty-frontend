@@ -6,10 +6,11 @@ import NavBar from '../../components/navBar';
 import ProjectEditInfo from '../../components/projectPageComponents/projectEditInfo'
 import ProjectFiles from '../../components/projectPageComponents/projectFiles'
 import { getProjectWithId } from '../../redux/actionCreators'
+import { backgroundColor2 } from '../../style/theme'
 
 const loginFormStyle = {
   height: "100%",
-  marginTop: "25%",
+  marginTop: 75,
 }
 
 const bountiesStyle = {
@@ -48,16 +49,18 @@ class ProjectPageEdit extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <Segment style={bountiesStyle}>
-                  <Menu attached tabular widths={3}>
-                    <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
-                    <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
-                  </Menu>
-                  <Segment attached>
-                    <ProjectFiles />
+                <div style={bountiesStyle}>
+                  <Segment style={backgroundColor2}>
+                    <Menu attached tabular widths={3}>
+                      <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
+                      <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>
+                      <Menu.Item as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
+                    </Menu>
+                    <Segment attached>
+                      <ProjectFiles />
+                    </Segment>
                   </Segment>
-                </Segment>
+                </div>
               </Grid.Column>
             </Grid.Row>
           </Grid>

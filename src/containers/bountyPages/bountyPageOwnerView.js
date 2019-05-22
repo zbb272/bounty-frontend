@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
 import BountyCardProjectOwnerWorking from '../../components/bountyCardComponents/bountyCardProjectOwnerWorking'
+import BountyCardProjectOwnerPending from '../../components/bountyCardComponents/bountyCardProjectOwnerPending'
 import { getProjectWithId } from '../../redux/actionCreators'
 import { backgroundColor2 } from '../../style/theme'
 
@@ -35,11 +36,14 @@ class BountyPageOwnerView extends Component {
           {this.props.currentBounty.status === "working" ?
             <BountyCardProjectOwnerWorking />
             : null}
+          {this.props.currentBounty.status === "pending" ?
+            <BountyCardProjectOwnerPending />
+            : null}
           {this.props.currentBounty.status === "completed" ?
             <h1>Bounty has been fulfilled</h1>
             : null}
-          {this.props.currentBounty.status === "cancelled" ?
-            <h1>Bounty has been cancelled</h1>
+          {this.props.currentBounty.status.includes("cancelled") ?
+            <h1>Bounty has been {this.props.currentBounty.status}</h1>
             : null}
         </Segment>
       </div>

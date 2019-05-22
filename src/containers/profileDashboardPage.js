@@ -7,10 +7,11 @@ import UserInformation from './userInformation'
 import UserProjects from './userProjects'
 import UserBounties from './userBounties'
 import { getUserWithId } from '../redux/actionCreators'
+import { backgroundColor2 } from '../style/theme'
 
 const loginFormStyle = {
   height: "100%",
-  marginTop: "25%",
+  marginTop: 75,
 }
 
 const bountiesStyle = {
@@ -50,20 +51,24 @@ class ProfileDashboardPage extends Component {
                   </Grid.Column>
 
                   <Grid.Column width={11}>
-                    <Segment style={bountiesStyle}>
-                      <Grid columns="equal">
-                        <Grid.Row columns="equal">
-                        <Grid.Column>
-                          <h1>Current Projects</h1>
-                          <UserProjects />
-                        </Grid.Column>
-                        <Grid.Column>
-                          <h1>Current Bounties</h1>
-                          <UserBounties />
-                        </Grid.Column>
-                        </Grid.Row>
-                      </Grid>
-                    </Segment>
+                    <div style={bountiesStyle}>
+                      <Segment style={backgroundColor2}>
+                        <Segment>
+                          <Grid columns="equal">
+                            <Grid.Row columns="equal">
+                            <Grid.Column>
+                              <h1>Current Projects</h1>
+                              <UserProjects />
+                            </Grid.Column>
+                            <Grid.Column>
+                              <h1>Current Bounties</h1>
+                              <UserBounties />
+                            </Grid.Column>
+                            </Grid.Row>
+                          </Grid>
+                        </Segment>
+                      </Segment>
+                    </div>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
