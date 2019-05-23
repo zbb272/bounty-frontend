@@ -253,6 +253,7 @@ function createBounty(bountyObj){
     })
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       dispatch(refreshCurrentUser())
       // dispatch(getUserWithId(data.user.id))
     })

@@ -70,8 +70,8 @@ class NavBar extends Component{
               <Image src={logo} style={imageStyle} />
               <span style={homeButtonStyle}>Bounty</span>
             </Menu.Item>
-            <Menu.Item as={Link} to="/login" >Bounties</Menu.Item>
-            <Menu.Item as={Link} to="/login" >Projects</Menu.Item>
+            <Menu.Item as={Link} to="/bounties" >Bounties</Menu.Item>
+            <Menu.Item as={Link} to="/projects" >Projects</Menu.Item>
             <Menu.Item as={Link} to="/projects/new" >Create New Project</Menu.Item>
 
 

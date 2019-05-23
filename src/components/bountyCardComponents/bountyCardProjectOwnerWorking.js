@@ -9,10 +9,6 @@ class BountyCardProjectOwnerWorking extends Component {
     super(props)
   }
 
-  completeButtonEventHandler = (event) => {
-    this.props.ownerCompleteBounty(this.props.currentBounty);
-  }
-
   cancelButtonEventHandler = (event) => {
     if(window.confirm("If you cancel the bounty at this stage you will lose your deposit. Press OK to confirm.")){
       this.props.ownerCancelBounty(this.props.currentBounty);

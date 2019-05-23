@@ -30,9 +30,12 @@ class ProjectPageContributors extends Component {
     if(!this.state.currentProject){
       this.props.getProjectWithId(this.state.projectId)
     }
-    else if(this.state.currentProject.id !== this.stat.projectId){
+    else if(this.state.currentProject.id !== this.state.projectId){
       this.props.getProjectWithId(this.state.projectId)
     }
+    //get bounties
+    // iterate through those with this project id && complete status
+    //  collect user associated with that bounty and put info onto card
   }
 
   render(){
