@@ -65,16 +65,17 @@ class NewBountyPage extends Component {
       let tagsToSend = []
       this.state.tags.forEach(tag => {
         if(this.state.selectedTags.includes(tag.name)){
-          tagsToSend.push(tag);
+          tagsToSend.push(tag.id);
         }
       })
+      console.log(tagsToSend)
       let bountyObj = {
         title: this.state.title,
         amount: this.state.amount,
         description: this.state.description,
         status: "open",
         project_id: this.state.projectId,
-        tags: tagsToSend,
+        newtag_ids: tagsToSend,
       }
       this.props.createBounty(bountyObj);
       this.props.history.push(`/projects/${this.state.projectId}`)
