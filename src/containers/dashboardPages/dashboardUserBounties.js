@@ -9,7 +9,7 @@ class DashboardUserBounties extends Component {
     return(
       <div className='user-information' >
       <Segment style={backgroundColor2}>
-        {this.props.currentUser.bounties.map(bount => <BountyCardSmall bounty={bount}/> )}
+        {this.props.currentUser.bounties.map(bount => <BountyCardSmall bounty={bount} project={this.props.currentProject}/> )}
       </Segment>
       </div>
     )
@@ -18,6 +18,7 @@ class DashboardUserBounties extends Component {
 
 const mapStateToProps = (store, ownProps) => ({
   currentUser: store.currentUser,
+  currentProject: store.currentProject,
 })
 
 export default connect(mapStateToProps)(DashboardUserBounties);

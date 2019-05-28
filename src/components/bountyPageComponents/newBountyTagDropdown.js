@@ -7,24 +7,23 @@ class NewBountyTagDropdown extends Component{
     super(props)
     console.log(props)
     this.state = {
-      options: [],
-      tags: props.tags,
+      options: props.options,
     }
   }
 
-  componentDidMount(){
-    let newOptions = [];
-    this.state.tags.forEach(tag => {
-      newOptions.push({
-        key: tag.name,
-        text: tag.name,
-        value: tag.name,
-      })
-    })
-    this.setState({
-      options: newOptions,
-    })
-  }
+  // componentDidMount(){
+  //   let newOptions = [];
+  //   this.state.tags.forEach(tag => {
+  //     newOptions.push({
+  //       key: tag.name,
+  //       text: tag.name,
+  //       value: tag.name,
+  //     })
+  //   })
+  //   this.setState({
+  //     options: newOptions,
+  //   })
+  // }
 
   render(){
     return(
@@ -36,7 +35,7 @@ class NewBountyTagDropdown extends Component{
         multiple
         search
         selection
-        options={this.state.options}
+        options={this.props.options}
       />
     )
   }

@@ -90,6 +90,7 @@ const mapStateToProps = (store, ownProps) => ({
   currentUser: store.currentUser,
   userAuthenticated: store.userAuthenticated,
   targetUser: store.targetUser,
+  currentProject: store.currentProject,
 })
 
 const mapDispatchToProps = (dispatch) => ({

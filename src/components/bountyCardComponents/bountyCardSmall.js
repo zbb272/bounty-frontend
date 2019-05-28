@@ -10,7 +10,12 @@ const BountyCardSmall = (props) => {
 
   const progressBarStyle = {
   }
-  
+  console.log(props)
+  let projectName = props.project.name;
+  if(projectName === undefined){
+    projectName = "test"
+  }
+
   return(
     <Segment>
       <Grid>
@@ -23,7 +28,7 @@ const BountyCardSmall = (props) => {
           </Grid.Column>
           <Grid.Column width={7}>
             <h4><Link to={`/projects/${props.bounty.project_id}/bounties/${props.bounty.id}`}>{props.bounty.title}</Link></h4>
-            <div><Link to={`/projects/${props.bounty.project_id}`}>{props.project.name}</Link></div>
+            <div><Link to={`/projects/${props.bounty.project_id}`}>{projectName}</Link></div>
           </Grid.Column>
           <Grid.Column width={7}>
             <p>{props.bounty.status}</p>

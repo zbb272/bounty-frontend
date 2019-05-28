@@ -19,7 +19,7 @@ const bountiesStyle = {
 
 const segmentStyle = {
   background: "#031229",
-  maxWidth: "25%",
+  maxWidth: "35%",
 }
 
 const formFieldStyle = {
@@ -37,6 +37,8 @@ class NewBountyPage extends Component {
       description: "",
       selectedTags: [],
       tags: [],
+      newTagName: "",
+      options: [],
     }
   }
 
@@ -52,7 +54,51 @@ class NewBountyPage extends Component {
       .then(res => res.json() )
       .then(data => {
         this.setState({tags: data})
+        let newOptions = [];
+        data.forEach(tag => {
+          newOptions.push({
+            key: tag.name,
+            text: tag.name,
+            value: tag.name,
+          })
+        })
+        this.setState({
+          options: newOptions,
+        })
       })
+  }
+
+  createNewTag = (event) => {
+    event.preventDefault();
+
+    let tagNames = this.state.tags.map(tag => tag.name)
+    if(this.state.newTagName !== "" && !tagNames.includes(this.state.newTagName)){
+      console.log("here")
+      fetch("http://localhost:3000/api/v1/tags",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({name: this.state.newTagName})
+      }).then(res => res.json())
+        .then(data => {
+          let newTags = [...this.state.tags]
+          newTags.push(data);
+
+          let newOptions = JSON.parse(JSON.stringify([...this.state.options]));
+          newOptions.push({
+              key: data.name,
+              text: data.name,
+              value: data.name,
+          })
+          this.setState({
+            options: newOptions,
+            tags: newTags,
+            newTagName: ""
+          })
+
+        })
+    }
   }
 
   onFormSubmit = (event) => {
@@ -124,8 +170,18 @@ class NewBountyPage extends Component {
                               <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
                                   e => { this.setState({description: e.target.value})}
                                 } />
+
+                              <Form.Group inline>
+                                <Form.Input style={{marginTop: 15}} icon="tag" iconPosition='left' value={this.state.newTagName} placeholder='Add a new tag' onChange={
+                                    e => { this.setState({newTagName: e.target.value})}
+                                  }/>
+                                <Button style={{marginTop: 15}} onClick={this.createNewTag} color='blue' size='medium'>
+                                  Create Tag
+                                </Button>
+                              </Form.Group>
+
                               { this.state.tags.length > 0 ?
-                                <NewBountyTagDropdown tags={this.state.tags} changeHandler={this.tagSelectChangHandler}/>
+                                <NewBountyTagDropdown options={this.state.options} changeHandler={this.tagSelectChangHandler}/>
                               :
                                 null
                               }
