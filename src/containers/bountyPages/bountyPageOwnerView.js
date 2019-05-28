@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
 import BountyCardProjectOwnerWorking from '../../components/bountyCardComponents/bountyCardProjectOwnerWorking'
 import BountyCardProjectOwnerPending from '../../components/bountyCardComponents/bountyCardProjectOwnerPending'
+import BountyCardProjectOwnerComplete from '../../components/bountyCardComponents/bountyCardProjectOwnerComplete'
 import { getProjectWithId } from '../../redux/actionCreators'
 import { backgroundColor2 } from '../../style/theme'
 
@@ -40,7 +41,7 @@ class BountyPageOwnerView extends Component {
             <BountyCardProjectOwnerPending />
             : null}
           {this.props.currentBounty.status === "completed" ?
-            <h1>Bounty has been fulfilled</h1>
+            <BountyCardProjectOwnerComplete />
             : null}
           {this.props.currentBounty.status.includes("cancelled") ?
             <h1>Bounty has been {this.props.currentBounty.status}</h1>

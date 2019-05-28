@@ -5,6 +5,7 @@ const USERS_URL = 'http://localhost:3000/api/v1/users'
 const PROJECTS_URL = 'http://localhost:3000/api/v1/projects'
 const BOUNTIES_URL = 'http://localhost:3000/api/v1/bounties'
 const APPLICATIONS_URL = "http://localhost:3000/api/v1/applications"
+const REVIEWS_URL = "http://localhost:3000/api/v1/reviews"
 
 function fetchedUser(userObj){
   return {type: FETCHED_USER, payload: userObj}
@@ -200,6 +201,7 @@ function refreshCurrentUser(){
     .then(user => {
       localStorage.setItem("currentUser", JSON.stringify(user));
       dispatch(fetchedUser(user))
+      console.log("refreshed user")
     })
   }
 }
@@ -316,6 +318,40 @@ function userCancelBounty(bountyObj){
   }
 }
 
+function ownerReviewBounty(reviewObj){
+  return (dispatch) => {
+    fetch(REVIEWS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reviewObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(refreshCurrentUser())
+      // dispatch(getUserWithId(data.user.id))
+    })
+  }
+}
+
+function userReviewProject(reviewObj){
+  return (dispatch) => {
+    fetch(REVIEWS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reviewObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      dispatch(refreshCurrentUser())
+      // dispatch(getUserWithId(data.user.id))
+    })
+  }
+}
+
 function unAuthenticateUser(){
   return {type: UNAUTHENTICATE_USER}
 }
@@ -327,4 +363,4 @@ function logoutUser(){
   return {type: LOGOUT_USER}
 }
 
-export { userCancelBounty, userCompleteBounty, createProject, createBounty, createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}
+export { userReviewProject, ownerReviewBounty, userCancelBounty, userCompleteBounty, createProject, createBounty, createApplication, ownerCancelBounty, ownerCompleteBounty, approveApplication, getBountyWithId, unAuthenticateUser, logoutUser, getUserWithId, editProject, getProjectWithId, editUser, patchingUser, creatingUser, createUser, fetchedUser, loadingUser, loginUser, authenticatedUser}

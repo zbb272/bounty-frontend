@@ -9,6 +9,7 @@ import BountyInfoTop from '../../components/bountyPageComponents/bountyInfoTop'
 import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
 import BountyPageUserApply from '../../components/bountyPageComponents/bountyPageUserApply'
 import BountyCardUserWorking from '../../components/bountyCardComponents/bountyCardUserWorking'
+import BountyCardUserComplete from '../../components/bountyCardComponents/bountyCardUserComplete'
 import { getProjectWithId } from '../../redux/actionCreators'
 
 const loginFormStyle = {
@@ -61,7 +62,7 @@ class BountyPageUserView extends Component {
     } else if(this.props.currentBounty.status === "completed"){
       app = this.props.currentUser.applications.find(app => app.bounty_id === this.state.bountyId);
       if(app !== undefined){
-        comp.push(<h1>Bounty is completed by you</h1>)
+        comp.push(<BountyCardUserComplete />)
       }
       else {
         comp.push(<h1>This bounty is completed by someone already.</h1>)
