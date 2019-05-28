@@ -17,6 +17,11 @@ const headerStyle = {
 class UserInfoTop extends Component{
 
   render(){
+    let currentBalance = 0;
+    if(this.props.targetUser.id === this.props.currentUser.id){
+      let bounts = this.props.currentUser.bounties.filter(b => b.status === "completed");
+      bounts.forEach(b => currentBalance += b.amount);
+    }
     return(
       <div>
         <Segment>
@@ -26,8 +31,7 @@ class UserInfoTop extends Component{
           {this.props.targetUser.id === this.props.currentUser.id ?
             <React.Fragment>
             <p><Link to={"/edit"}>Edit Profile</Link></p>
-            <p>Current Balance: $0.00</p>
-            <p><Link to={"/login"}>Transfer Funds</Link></p>
+            <p>Current Balance: ${currentBalance}</p>
             </React.Fragment>
             :
             null

@@ -17,6 +17,9 @@ const headerStyle = {
 class DashboardUserInfoTop extends Component{
 
   render(){
+    let currentBalance = 0;
+    let bounts = this.props.currentUser.bounties.filter(b => b.status === "completed");
+    bounts.forEach(b => currentBalance += b.amount);
     return(
       <div>
         <Segment>
@@ -24,8 +27,7 @@ class DashboardUserInfoTop extends Component{
           <p>Github: {this.props.currentUser.github_url}</p>
           <p>Description: {this.props.currentUser.description}</p>
           <p><Link to={`/users/${this.props.currentUser.id}/edit`}>Edit Profile</Link></p>
-          <p>Current Balance: $0.00</p>
-          <p><Link to={"/login"}>Transfer Funds</Link></p>
+          <p>Current Balance: ${currentBalance}</p>
         </Segment>
       </div>
     );
