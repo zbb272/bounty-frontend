@@ -4,6 +4,7 @@ import { Redirect, withRouter, Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import NavBar from '../../components/navBar'
 import ProjectInformation from '../projectPages/projectInformation'
+import BountyCardSmall from '../../components/bountyCardComponents/bountyCardSmall'
 import { createProject } from '../../redux/actionCreators'
 import { backgroundColor3, backgroundColor2 } from '../../style/theme'
 
@@ -13,27 +14,40 @@ const loginFormStyle = {
 }
 
 class BountiesBrowsePage extends Component {
-  // constructor(props){
-  //   super(props)
-  //   this.state = {
-  //     name: "",
-  //     githubUrl: "",
-  //     description: "",
-  //   }
-  // }
+  constructor(props){
+    super(props)
+    this.state = {
+      highRatedBounties: [],
+      highPayingBounties: [],
+      randomBounties: [],
+    }
+  }
 
-  // onFormSubmit = (event) => {
-  //   event.preventDefault();
-  //   let projectObj = {
-  //     name: this.state.name,
-  //     github_url: this.state.amount,
-  //     description: this.state.description,
-  //     progress: 0,
-  //     user_id: this.props.currentUser.id,
-  //   }
-  //   this.props.createProject(projectObj);
-  //   this.props.history.push(`/dashboard`)
-  // }
+  componentDidMount(){
+    fetch("http://localhost:3000/api/v1/bounties")
+      .then(res => res.json())
+      .then(data => {
+        let openBounties = [];
+        let bountiesWithLowApplications = {};
+        let highestPayingBounties = [];
+        let randomBounties = {};
+        data.forEach(bounty => {
+          if(bounty.status === "open"){
+            openBounties.push(bounty)
+          }
+        })
+        openBounties.sort((a, b) => {
+          return a.amount - b.amount
+        })
+        while(highestPayingBounties.length < 3 && openBounties.length > 0){
+          highestPayingBounties.push(openBounties.pop())
+        }
+
+        this.setState({
+          highPayingBounties: highestPayingBounties
+        })
+      })
+  }
 
   render(){
     return(
@@ -56,6 +70,9 @@ class BountiesBrowsePage extends Component {
                 <Segment style={backgroundColor2}>
                   <Segment>
                     <h2 style={{textAlign: "left"}}>Highest Paying Bounties</h2>
+                      {this.state.highPayingBounties.map(bount => {
+                        return <BountyCardSmall bounty={bount} />
+                      })}
                       <Button style={{marginTop: 10}} color='blue' fluid size='large'>
                         Placeholder
                       </Button>

@@ -11,7 +11,8 @@ const BountyCardSmall = (props) => {
   const progressBarStyle = {
   }
   console.log(props)
-  let projectName = props.project.name;
+  // gonna have to change some
+  let projectName = props.bounty.project.name;
   if(projectName === undefined){
     projectName = "test"
   }

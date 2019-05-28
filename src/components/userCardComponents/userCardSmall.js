@@ -14,7 +14,7 @@ const UserCardSmall = (props) => {
 
   let stars = [];
   for(let i = 1; i < 6; i++){
-    if(props.bounty.reviews[0].rating >= i){
+    if(props.bounty.reviews[0] !== undefined && props.bounty.reviews[0].rating >= i){
       stars.push(<Icon name='star' />)
     }
     else{
