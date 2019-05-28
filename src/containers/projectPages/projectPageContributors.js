@@ -23,6 +23,7 @@ class ProjectPageContributors extends Component {
     super(props)
     this.state = {
       projectId: parseInt(this.props.match.params.id),
+      bounties: [],
     }
   }
 
@@ -36,6 +37,16 @@ class ProjectPageContributors extends Component {
     //get bounties
     // iterate through those with this project id && complete status
     //  collect user associated with that bounty and put info onto card
+    fetch("http://localhost:3000/api/v1/bounties")
+      .then(res => res.json())
+      .then(data => {
+        let newBounties = data.filter(b => {
+          return b.project.id === this.state.projectId && b.status === "completed"
+        })
+        this.setState({
+          bounties: newBounties,
+        })
+      })
   }
 
   render(){
@@ -60,7 +71,7 @@ class ProjectPageContributors extends Component {
                     <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}/contributors`}>Contributors</Menu.Item>
                   </Menu>
                   <Segment attached>
-                    <ProjectContributors />
+                    <ProjectContributors bounties={this.state.bounties} />
                   </Segment>
                 </Segment>
               </Grid.Column>

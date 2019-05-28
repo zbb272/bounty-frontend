@@ -3,6 +3,7 @@ import { Segment } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
 import BountyCardSmall from "../bountyCardComponents/bountyCardSmall"
+import UserCardSmall from "../userCardComponents/userCardSmall"
 import { backgroundColor2 } from '../../style/theme'
 
 const imageStyle = {
@@ -22,7 +23,7 @@ class ProjectContributors extends Component{
     return(
       <div>
       <Segment style={backgroundColor2}>
-        {this.props.currentProject.bounties.map(bount => <BountyCardSmall key={bount.id} bounty={bount} project={this.props.currentProject}/> )}
+        {this.props.bounties.map(bount => <UserCardSmall key={bount.id} bounty={bount} project={this.props.currentProject}/> )}
       </Segment>
       </div>
     )
