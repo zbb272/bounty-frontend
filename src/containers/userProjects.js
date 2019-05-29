@@ -12,7 +12,7 @@ class UserProjects extends Component {
     return(
       <div className='user-information' style={userInfoStyle}>
       <Segment style={backgroundColor2}>
-        {this.props.targetUser.projects.map(proj => <ProjectCardSmall project={proj}/> )}
+        {this.props.targetUser.projects.map(proj => <ProjectCardSmall key={proj.id} project={proj}/> )}
       </Segment>
       </div>
     )

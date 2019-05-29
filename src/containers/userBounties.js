@@ -12,7 +12,7 @@ class UserBounties extends Component {
     return(
       <div className='user-information' style={userInfoStyle}>
       <Segment style={backgroundColor2}>
-        {this.props.targetUser.bounties.map(bount => <BountyCardSmall bounty={bount} project={this.props.currentProject} /> )}
+        {this.props.targetUser.bounties.map(bount => <BountyCardSmall key={bount.id} bounty={bount} project={this.props.currentProject} /> )}
       </Segment>
       </div>
     )

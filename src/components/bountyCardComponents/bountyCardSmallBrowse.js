@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon, Grid, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-const BountyCardSmall = (props) => {
+const BountyCardSmallBrowse = (props) => {
 
   const bountyCardStyle = {
 
@@ -12,7 +12,7 @@ const BountyCardSmall = (props) => {
   }
   console.log(props)
   // gonna have to change some
-  let projectName = props.project.name;
+  let projectName = props.bounty.project.name;
   if(projectName === undefined){
     projectName = "test"
   }
@@ -28,11 +28,12 @@ const BountyCardSmall = (props) => {
             </Icon.Group>
           </Grid.Column>
           <Grid.Column width={7}>
-            <h4><Link to={`/projects/${props.bounty.project_id}/bounties/${props.bounty.id}`}>{props.bounty.title}</Link></h4>
-            <div><Link to={`/projects/${props.bounty.project_id}`}>{projectName}</Link></div>
+            <h4><Link to={`/projects/${props.bounty.project.id}/bounties/${props.bounty.id}`}>{props.bounty.title}</Link></h4>
+            <div><Link to={`/projects/${props.bounty.project.id}`}>{projectName}</Link></div>
           </Grid.Column>
           <Grid.Column width={7}>
             <p>{props.bounty.status}</p>
+            <p>${props.bounty.amount}</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -40,4 +41,4 @@ const BountyCardSmall = (props) => {
   );
 }
 
-export default BountyCardSmall;
+export default BountyCardSmallBrowse;

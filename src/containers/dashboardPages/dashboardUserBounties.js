@@ -9,7 +9,7 @@ class DashboardUserBounties extends Component {
     return(
       <div className='user-information' >
       <Segment style={backgroundColor2}>
-        {this.props.currentUser.bounties.map(bount => <BountyCardSmall bounty={bount} project={this.props.currentProject}/> )}
+        {this.props.currentUser.bounties.map(bount => <BountyCardSmall key={bount.id} bounty={bount} project={this.props.currentProject}/> )}
       </Segment>
       </div>
     )

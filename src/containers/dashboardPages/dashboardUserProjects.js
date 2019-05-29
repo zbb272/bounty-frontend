@@ -10,7 +10,7 @@ class DashboardUserProjects extends Component {
     return(
       <div className='user-information'>
       <Segment style={backgroundColor2}>
-        {this.props.currentUser.projects.map(proj => <ProjectCardSmall project={proj}/> )}
+        {this.props.currentUser.projects.map(proj => <ProjectCardSmall key={proj.id} project={proj}/> )}
       </Segment>
       </div>
     )

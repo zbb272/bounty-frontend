@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Segment, Image, Menu, Container, Button, Icon } from 'semantic-ui-react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import logo from '../logo.png';
 
 const formStyle = {
@@ -59,6 +59,7 @@ class NavBar extends Component{
   onFormSubmit = (event) => {
     event.preventDefault();
     console.log(this.state.searchText)
+    this.props.history.push(`/search/${this.state.searchText}`)
   }
 
   render(){
@@ -92,4 +93,4 @@ class NavBar extends Component{
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

@@ -17,6 +17,7 @@ import NewBountyPage from './containers/bountyPages/newBountyPage'
 import NewProjectPage from './containers/projectPages/newProjectPage'
 import ProjectsBrowsePage from './containers/projectPages/projectsBrowsePage'
 import BountiesBrowsePage from './containers/bountyPages/bountiesBrowsePage'
+import SearchResultsPage from './containers/searchResultsPage/searchResultsPage'
 import './App.css';
 import { fetchedUser, authenticatedUser } from './redux/actionCreators'
 
@@ -63,6 +64,7 @@ class App extends Component {
               <Route exact path="/bounties" component={BountiesBrowsePage} />
               <Route exact path="/projects" component={ProjectsBrowsePage} />
               <Route exact path="/projects/new" component={NewProjectPage} />
+              <Route path="/search/:searchTerm" component={SearchResultsPage} />
               <Route path="/users/:id/edit" component={EditProfileDashboardPage} />
               <Route path="/users/:id" component={ProfileDashboardPage} />
               <Route path="/projects/:id/bounties/new" component={NewBountyPage} />

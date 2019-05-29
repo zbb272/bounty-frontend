@@ -4,7 +4,7 @@ import { Redirect, withRouter, Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import NavBar from '../../components/navBar'
 import ProjectInformation from '../projectPages/projectInformation'
-import BountyCardSmall from '../../components/bountyCardComponents/bountyCardSmall'
+import BountyCardSmallBrowse from '../../components/bountyCardComponents/bountyCardSmallBrowse'
 import { createProject } from '../../redux/actionCreators'
 import { backgroundColor3, backgroundColor2 } from '../../style/theme'
 
@@ -17,7 +17,8 @@ class BountiesBrowsePage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      highRatedBounties: [],
+      recommendedBounties: [],
+      lowApplicantBounties: [],
       highPayingBounties: [],
       randomBounties: [],
     }
@@ -28,23 +29,58 @@ class BountiesBrowsePage extends Component {
       .then(res => res.json())
       .then(data => {
         let openBounties = [];
-        let bountiesWithLowApplications = {};
+        let recommendBounties = [];
+        let bountiesWithLowApplications = [];
         let highestPayingBounties = [];
-        let randomBounties = {};
+        let randomBounties = [];
         data.forEach(bounty => {
-          if(bounty.status === "open"){
+          if(bounty.status === "open" && bounty.project.user_id !== this.props.currentUser.id){
             openBounties.push(bounty)
           }
         })
+        //sort bounties by payment amount
         openBounties.sort((a, b) => {
-          return a.amount - b.amount
+          return b.amount - a.amount
         })
-        while(highestPayingBounties.length < 3 && openBounties.length > 0){
-          highestPayingBounties.push(openBounties.pop())
+        let  i = 0
+        while(highestPayingBounties.length < 5 && highestPayingBounties.length < openBounties.length){
+          highestPayingBounties.push(openBounties[i])
+          i++;
+        }
+
+        //select bounties with tags that match users
+        let userTagsIds = this.props.currentUser.tags.map(tag => tag.id)
+        openBounties.forEach(bount => {
+          bount.tags.forEach(tag => {
+            if(userTagsIds.includes(tag.id) && !recommendBounties.includes(bount)){
+              recommendBounties.push(bount);
+            }
+          })
+        })
+        if(recommendBounties.length < 5){
+          i = 0
+          while(recommendBounties.length < 5 && recommendBounties.length < openBounties.length){
+            if(!recommendBounties.includes(openBounties[i])){
+              recommendBounties.push(openBounties[i])
+            }
+            i++;
+          }
+        }
+
+        //sort by number of applicants
+        openBounties.sort((a, b) => {
+          return b.applications.length - a.applications.length
+        })
+        i = 0
+        while(bountiesWithLowApplications.length < 5 && bountiesWithLowApplications.length < openBounties.length){
+          bountiesWithLowApplications.push(openBounties[i])
+          i++;
         }
 
         this.setState({
-          highPayingBounties: highestPayingBounties
+          highPayingBounties: highestPayingBounties,
+          recommendedBounties: recommendBounties,
+          lowApplicantBounties: bountiesWithLowApplications,
         })
       })
   }
@@ -61,29 +97,26 @@ class BountiesBrowsePage extends Component {
               <Grid.Column width={12}>
                 <Segment style={backgroundColor2}>
                   <Segment>
-                    <h2 style={{textAlign: "left"}}>Bounties from High Rated Projects</h2>
-                      <Button style={{marginTop: 10}} color='blue' fluid size='large'>
-                        Placeholder
-                      </Button>
+                    <h2 style={{textAlign: "left"}}>Recommended Bounties</h2>
+                      {this.state.recommendedBounties.map(bount =>
+                        <BountyCardSmallBrowse key={bount.id} bounty={bount} />
+                      )}
                   </Segment>
                 </Segment>
                 <Segment style={backgroundColor2}>
                   <Segment>
                     <h2 style={{textAlign: "left"}}>Highest Paying Bounties</h2>
-                      {this.state.highPayingBounties.map(bount => {
-                        return <BountyCardSmall bounty={bount} />
-                      })}
-                      <Button style={{marginTop: 10}} color='blue' fluid size='large'>
-                        Placeholder
-                      </Button>
+                      {this.state.highPayingBounties.map(bount =>
+                        <BountyCardSmallBrowse key={bount.id} bounty={bount} />
+                      )}
                   </Segment>
                 </Segment>
                 <Segment style={backgroundColor2}>
                   <Segment>
-                    <h2 style={{textAlign: "left"}}>Random Bounties</h2>
-                      <Button style={{marginTop: 10}} color='blue' fluid size='large'>
-                        Placeholder
-                      </Button>
+                    <h2 style={{textAlign: "left"}}>Bounties That Need More Applicants</h2>
+                      {this.state.lowApplicantBounties.map(bount =>
+                        <BountyCardSmallBrowse key={bount.id} bounty={bount} />
+                      )}
                   </Segment>
                 </Segment>
               </Grid.Column>

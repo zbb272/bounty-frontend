@@ -52,10 +52,10 @@ class DashboardUserInfoStats extends Component {
     let stars = [];
     for(let i = 1; i < 6; i++){
       if(averageRating > i){
-        stars.push(<Icon name='star' />)
+        stars.push(<Icon key={i} name='star' />)
       }
       else{
-        stars.push(<Icon name='star outline' />)
+        stars.push(<Icon key={i} name='star outline' />)
       }
     }
     return(
