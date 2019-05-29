@@ -22,7 +22,7 @@ class BountyPageOwnerView extends Component {
   render(){
     let applicationsComp = []
     if(this.props.currentBounty.status === "open" && this.props.currentBounty.applications.length === 0){
-      applicationsComp.push(<h1>Currently no applications for this bounty</h1>)
+      applicationsComp.push(<h1 key="what">Currently no applications for this bounty</h1>)
     }else if (this.props.currentBounty.status === "open") {
       applicationsComp = this.props.currentBounty.applications.map(app =>
         <ApplicationCardSmall key={app.id} application={app}/>

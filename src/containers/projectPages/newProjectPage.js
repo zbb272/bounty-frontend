@@ -24,15 +24,20 @@ class NewProjectPage extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    let projectObj = {
-      name: this.state.name,
-      github_url: this.state.amount,
-      description: this.state.description,
-      progress: 0,
-      user_id: this.props.currentUser.id,
+    if(this.state.name === "" || this.state.githubUrl === "" || this.state.description === ""){
+      window.alert("Cannot have empty fields")
     }
-    this.props.createProject(projectObj);
-    this.props.history.push(`/dashboard`)
+    else {
+      let projectObj = {
+        name: this.state.name,
+        github_url: this.state.amount,
+        description: this.state.description,
+        progress: 0,
+        user_id: this.props.currentUser.id,
+      }
+      this.props.createProject(projectObj);
+      this.props.history.push(`/dashboard`)
+    }
   }
 
   render(){

@@ -30,7 +30,7 @@ class DashboardUserInfoTop extends Component{
           <p>Current Balance: ${currentBalance}</p>
           <h4>User Tags: </h4>
           { this.props.currentUser.tags.map(tag => {
-            return <Button>{tag.name}</Button>
+            return <Button key={tag.id} >{tag.name}</Button>
           })}
         </Segment>
       </div>

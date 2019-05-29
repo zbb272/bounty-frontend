@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react';
 import { withRouter, Link } from "react-router-dom";
 import { backgroundColor1 } from '../../style/theme'
 
@@ -18,6 +18,10 @@ const ProjectFiles = (props) => {
         <Segment style={backgroundColor1} >
           <p>Description: {props.bountyObj.description}</p>
         </Segment>
+        <h4>Tags: </h4>
+        { props.bountyObj.tags.map(tag => {
+          return <Button key={tag.id} >{tag.name}</Button>
+        })}
       </Segment>
     </div>
   );
