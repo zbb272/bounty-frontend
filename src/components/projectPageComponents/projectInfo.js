@@ -3,6 +3,7 @@ import { Segment } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
 import { backgroundColor1 } from '../../style/theme'
+import ProjectInfoStats from './projectInfoStats'
 
 const imageStyle = {
   maxWidth: 75,
@@ -31,8 +32,8 @@ class ProjectInfo extends Component{
           <Segment style={backgroundColor1}>
           <p>Description: {this.props.currentProject.description}</p>
           </Segment>
-          <p>Project Completion: {this.props.currentProject.progress}</p>
         </Segment>
+        <ProjectInfoStats />
       </div>
     );
   }

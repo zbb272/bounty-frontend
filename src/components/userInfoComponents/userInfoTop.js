@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
 
@@ -36,6 +36,10 @@ class UserInfoTop extends Component{
             :
             null
           }
+          <h4>User Tags: </h4>
+          { this.props.targetUser.tags.map(tag => {
+            return <Button>{tag.name}</Button>
+          })}
         </Segment>
       </div>
     );

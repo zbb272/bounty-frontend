@@ -61,13 +61,14 @@ function creatingUser(){
   return {type: CREATING_USER}
 }
 
-function createUser(credentials){
-  console.log(credentials)
-  let userToCreate = {
-    username: credentials.username,
-    email: credentials.email,
-    password_digest: credentials.password
-  }
+function createUser(userToCreate){
+  // console.log(credentials)
+  // let userToCreate = {
+  //   username: credentials.username,
+  //   email: credentials.email,
+  //   password_digest: credentials.password,
+  //   github_url:
+  // }
   return (dispatch) => {
     dispatch(creatingUser())
     fetch(USERS_URL, {

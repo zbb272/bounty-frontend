@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
 
@@ -28,6 +28,10 @@ class DashboardUserInfoTop extends Component{
           <p>Description: {this.props.currentUser.description}</p>
           <p><Link to={`/users/${this.props.currentUser.id}/edit`}>Edit Profile</Link></p>
           <p>Current Balance: ${currentBalance}</p>
+          <h4>User Tags: </h4>
+          { this.props.currentUser.tags.map(tag => {
+            return <Button>{tag.name}</Button>
+          })}
         </Segment>
       </div>
     );
