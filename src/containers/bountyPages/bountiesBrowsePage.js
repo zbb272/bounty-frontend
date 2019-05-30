@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Grid, Icon, Segment, Menu, Form, Button, TextArea } from 'semantic-ui-react';
-import { Redirect, withRouter, Link } from 'react-router-dom';
+import { Grid, Segment } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
 import NavBar from '../../components/navBar'
-import ProjectInformation from '../projectPages/projectInformation'
 import BountyCardSmallBrowse from '../../components/bountyCardComponents/bountyCardSmallBrowse'
-import { createProject } from '../../redux/actionCreators'
-import { backgroundColor3, backgroundColor2 } from '../../style/theme'
+import { backgroundColor2 } from '../../style/theme'
 
 const loginFormStyle = {
   height: "100%",
@@ -32,7 +30,7 @@ class BountiesBrowsePage extends Component {
         let recommendBounties = [];
         let bountiesWithLowApplications = [];
         let highestPayingBounties = [];
-        let randomBounties = [];
+        // let randomBounties = [];
         data.forEach(bounty => {
           if(bounty.status === "open" && bounty.project.user_id !== this.props.currentUser.id){
             openBounties.push(bounty)

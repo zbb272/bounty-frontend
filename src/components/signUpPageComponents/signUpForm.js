@@ -88,7 +88,7 @@ class SignUpForm extends Component{
           <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' onChange={
               e => { this.setState({username: e.target.value})}
             }/>
-          <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange={
+          <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' onChange={
               e => { this.setState({email: e.target.value})}
             }/>
           <Form.Input fluid icon='github' iconPosition='left' placeholder="Github URL" value={this.state.github} onChange={

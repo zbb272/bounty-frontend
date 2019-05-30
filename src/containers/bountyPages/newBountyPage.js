@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Icon, Segment, Menu, Form, Button, TextArea } from 'semantic-ui-react';
-import { Redirect, withRouter, Link } from 'react-router-dom';
+import { Grid, Icon, Segment, Form, Button, TextArea } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
 import NavBar from '../../components/navBar'
 import ProjectInformation from '../projectPages/projectInformation'
@@ -21,11 +21,6 @@ const segmentStyle = {
   background: "#031229",
   maxWidth: "35%",
 }
-
-const formFieldStyle = {
-  maxWidth: "25%",
-}
-
 
 class NewBountyPage extends Component {
   constructor(props){

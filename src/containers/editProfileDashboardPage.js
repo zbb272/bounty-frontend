@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Segment, Button, Icon } from 'semantic-ui-react';
+import { Grid, Segment, Icon } from 'semantic-ui-react';
 import { Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../components/navBar';
@@ -12,10 +12,6 @@ import { backgroundColor2 } from '../style/theme'
 const loginFormStyle = {
   height: "100%",
   marginTop: 75,
-}
-
-const bountiesStyle = {
-  marginRight: 10,
 }
 
 class EditProfileDashboardPage extends Component {

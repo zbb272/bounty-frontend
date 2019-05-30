@@ -160,7 +160,8 @@ class EditUserInfo extends Component{
     // if(tagToDelete !== undefined){
     //   let userObj = {
     //     id: this.props.currentUser.id,
-    //     delete_tag_id: tagToDelete.id
+    //     description: this.props.currentUser.description,
+    //     deletetag: tagToDelete.id,
     //   }
     //   console.log(userObj)
     //   this.props.editUser(userObj)

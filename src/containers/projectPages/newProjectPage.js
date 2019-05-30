@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Grid, Icon, Segment, Menu, Form, Button, TextArea } from 'semantic-ui-react';
-import { Redirect, withRouter, Link } from 'react-router-dom';
+import { Grid, Segment, Form, Button, TextArea } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
 import NavBar from '../../components/navBar'
-import ProjectInformation from '../projectPages/projectInformation'
 import { createProject } from '../../redux/actionCreators'
 import { backgroundColor3, backgroundColor2 } from '../../style/theme'
 
@@ -61,7 +60,7 @@ class NewProjectPage extends Component {
                         <Form.Input fluid icon='github' iconPosition='left' placeholder='Github URL' onChange={
                             e => { this.setState({githubUrl: e.target.value})}
                           }/>
-                        <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
+                        <TextArea placeholder="description..." value={this.state.description} onChange={
                             e => { this.setState({description: e.target.value})}
                           } />
 

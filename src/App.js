@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import {connect} from 'react-redux'
-import logo from './logo.svg';
 import SignUpPage from './containers/signUpPage';
 import LoginPage from './containers/loginPage';
 import logoutPage from './containers/logoutPage';

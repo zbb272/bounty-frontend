@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Segment, Image, Menu, Container, Button, Icon } from 'semantic-ui-react';
+import { Form, Image, Menu, Container, Icon } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import logo from '../logo.png';
 
@@ -9,7 +9,6 @@ const formStyle = {
   color: "black",
   backgroundColor: "#1b1c1d",
   marginLeft: 10,
-  marginRight: 10,
   marginTop: 12,
   float: "right",
   position: "fixed",

@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Segment, TextArea, Button } from 'semantic-ui-react';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
-import NavBar from '../../components/navBar';
-import ProjectInformation from '../projectPages/projectInformation'
-import ProjectFiles from '../../components/projectPageComponents/projectFiles'
-import BountyInfoTop from '../../components/bountyPageComponents/bountyInfoTop'
-import ApplicationCardSmall from '../../components/applicationCardComponents/applicationCardSmall'
 import BountyPageUserApply from '../../components/bountyPageComponents/bountyPageUserApply'
 import BountyCardUserWorking from '../../components/bountyCardComponents/bountyCardUserWorking'
 import BountyCardUserComplete from '../../components/bountyCardComponents/bountyCardUserComplete'
-import { getProjectWithId } from '../../redux/actionCreators'
-
-const loginFormStyle = {
-  height: "100%",
-}
-
-const bountiesStyle = {
-  marginRight: 10,
-}
 
 class BountyPageUserView extends Component {
   constructor(props){

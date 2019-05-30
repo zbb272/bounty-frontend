@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Segment, Icon, Menu, Button } from 'semantic-ui-react';
-import { Redirect, Link, withRouter } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Grid, Segment } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 import BountyCardSmallBrowse from '../../components/bountyCardComponents/bountyCardSmallBrowse'
 import UserCardSmallSearch from '../../components/userCardComponents/userCardSmallSearch'
 import ProjectCardSmallBrowse from '../../components/projectCardComponents/projectCardSmallBrowse'

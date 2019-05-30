@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Icon, Grid, Segment, Button, TextArea } from 'semantic-ui-react';
-import { Link, withRouter } from 'react-router-dom';
+import { Icon, Segment, Button, TextArea } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 import { ownerReviewBounty} from '../../redux/actionCreators';
 import {connect} from 'react-redux';
 
