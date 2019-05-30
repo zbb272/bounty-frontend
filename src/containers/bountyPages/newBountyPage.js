@@ -162,7 +162,7 @@ class NewBountyPage extends Component {
                               <Form.Input fluid icon='dollar' iconPosition='left' placeholder='Amount' onChange={
                                   e => { this.setState({amount: e.target.value})}
                                 }/>
-                              <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
+                              <TextArea placeholder="description..." value={this.state.description} onChange={
                                   e => { this.setState({description: e.target.value})}
                                 } />
 

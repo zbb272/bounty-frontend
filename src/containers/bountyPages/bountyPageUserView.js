@@ -53,8 +53,7 @@ class BountyPageUserView extends Component {
         comp.push(<h1>This bounty is completed by someone already.</h1>)
       }
     }
-
-    if(app === undefined){
+    if(app === undefined && this.props.currentBounty.status === "open"){
       comp.push(<BountyPageUserApply />)
     }
 

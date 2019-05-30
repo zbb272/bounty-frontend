@@ -186,7 +186,7 @@ class EditUserInfo extends Component{
             <Form.Input fluid icon='github' iconPosition='left' placeholder="Github URL" value={this.state.github} onChange={
                 e => { this.setState({github: e.target.value})}
               } />
-            <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
+            <TextArea placeholder="description..." value={this.state.description} onChange={
                 e => { this.setState({description: e.target.value})}
               } />
 
@@ -208,7 +208,7 @@ class EditUserInfo extends Component{
 
             <h4>Your tags: </h4>
             { this.props.currentUser.tags.map(tag => {
-              return <Button onClick={this.tagDeleteHandler} icon='cancel' label={{ as: 'a', basic: true, content: tag.name }} labelPosition='right' />
+              return <Button key={tag.id} onClick={this.tagDeleteHandler} icon='cancel' label={{ as: 'a', basic: true, content: tag.name }} labelPosition='right' />
             })}
 
 

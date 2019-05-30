@@ -51,7 +51,7 @@ class BountyCardUserComplete extends Component {
     return(
       <Segment>
         <h2>Bounty has been fulfilled.</h2>
-        {userReview === undefined  ?
+        {userReview === undefined && this.props.currentUser.id === this.props.currentBounty.user.id  ?
           <Segment>
             <h2>Leave a Review:</h2>
             <Button.Group icon>
@@ -61,10 +61,16 @@ class BountyCardUserComplete extends Component {
             <Button onClick={this.onSubmit} color='red' fluid size='medium'>Submit</Button>
           </Segment>
         :
+          null
+        }
+        {
+          userReview !== undefined && this.props.currentUser.id === this.props.currentBounty.user.id  ?
           <Segment>
             <h3>Rating: {userReview.rating}</h3>
             <h4>{userReview.message}</h4>
           </Segment>
+          :
+          null
         }
       </Segment>
     );

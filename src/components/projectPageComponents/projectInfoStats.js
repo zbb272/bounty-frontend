@@ -31,7 +31,7 @@ class ProjectInfoStats extends Component {
     averageRating = averageRating / numOfReviews;
     let stars = [];
     for(let i = 1; i < 6; i++){
-      if(averageRating > i){
+      if(Math.round(averageRating + 1) > i){
         stars.push(<Icon key={i} name='star' />)
       }
       else{

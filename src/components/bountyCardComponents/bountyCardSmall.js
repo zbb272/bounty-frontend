@@ -14,7 +14,7 @@ const BountyCardSmall = (props) => {
   // gonna have to change some
   let projectName = props.project.name;
   if(projectName === undefined){
-    projectName = "test"
+    projectName = ""
   }
 
   return(
