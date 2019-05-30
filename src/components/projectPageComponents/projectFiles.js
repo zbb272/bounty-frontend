@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Icon } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
 
@@ -23,7 +23,9 @@ class ProjectFiles extends Component{
         <Segment>
           <p><a href={`https://github.com/${this.props.currentProject.github_url}`} alt="medium blogs" target="_blank" rel="noopener noreferrer">Link to Github Repository of Project</a></p>
           <Segment>
-            <p></p>
+            <a href={`https://github.com/${this.props.currentProject.github_url}`} alt="medium blogs" target="_blank" rel="noopener noreferrer">
+            <Icon name="github" size="massive"/>
+            </a>
           </Segment>
         </Segment>
       </div>

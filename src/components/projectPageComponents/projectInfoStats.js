@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Icon } from 'semantic-ui-react';
+import { Segment, Icon, Progress } from 'semantic-ui-react';
 import { connect } from "react-redux"
 
 const imageStyle = {
@@ -45,7 +45,8 @@ class ProjectInfoStats extends Component {
           <p>{stars}({numOfReviews})</p>
           <p>Number of Bounties Posted: {(this.props.currentProject.bounties).length}</p>
           <p>Completed Bounties: {(this.props.currentProject.bounties.filter(b => b.status==="completed")).length}</p>
-          <p>Poject Completion: {this.props.currentProject.progress}</p>
+          <h4>Poject Completion:</h4>
+          <Progress style={{marginRight: "20%", marginLeft:"20%"}} percent={this.props.currentProject.progress} progress />
         </Segment>
       </div>
     );

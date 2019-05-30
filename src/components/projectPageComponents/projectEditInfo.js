@@ -29,6 +29,7 @@ class ProjectEditInfo extends Component{
       description: this.props.currentProject.description,
       github: this.props.currentProject.github_url,
       password: "",
+      progress: this.props.currentProject.progress,
     }
   }
 
@@ -46,6 +47,7 @@ class ProjectEditInfo extends Component{
         name: this.state.name,
         description: this.state.description,
         github_url: this.state.github,
+        progress: parseInt(this.state.progress),
       }
       this.props.editProject(projObj)
       this.props.history.push(`/projects/${this.props.currentProject.id}`)
@@ -69,6 +71,9 @@ class ProjectEditInfo extends Component{
                 } />
               <TextArea fluid icon='bars' iconPosition='left' placeholder="description..." value={this.state.description} onChange={
                   e => { this.setState({description: e.target.value})}
+                } />
+              <Form.Input style={{marginTop: 15}} fluid icon='percent' iconPosition='left' placeholder="Project Complete Percentage" value={this.state.progress} onChange={
+                  e => { this.setState({progress: e.target.value})}
                 } />
               <Form.Input style={{marginTop: 50}} fluid icon='lock' iconPosition='left' placeholder='Current Password' type='password' onChange={
                   e => { this.setState({password: e.target.value})}
