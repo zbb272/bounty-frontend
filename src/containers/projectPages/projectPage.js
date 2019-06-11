@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Icon, Menu } from 'semantic-ui-react';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
 import ProjectInformation from './projectInformation'
@@ -49,7 +49,7 @@ class ProjectPage extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <Segment style={bountiesStyle, backgroundColor2}>
+                <Segment style={bountiesStyle}>
                   <Menu attached tabular widths={3}>
                     <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
                     <Menu.Item style={backgroundColor2} as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>

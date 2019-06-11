@@ -4,11 +4,6 @@ import { Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
 import { logoutUser, unAuthenticateUser } from '../redux/actionCreators'
 
-const loginFormStyle = {
-  height: "100%",
-  marginTop: "25%",
-}
-
 class logoutPage extends Component {
 
   componentDidMount(){

@@ -4,14 +4,6 @@ import { Link } from 'react-router-dom';
 
 const UserCardSmall = (props) => {
 
-  const bountyCardStyle = {
-
-  }
-
-  const progressBarStyle = {
-  }
-
-
   let stars = [];
   for(let i = 1; i < 6; i++){
     if(props.bounty.reviews[0] !== undefined && props.bounty.reviews[0].rating >= i){

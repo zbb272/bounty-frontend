@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Segment, TextArea, Button } from 'semantic-ui-react';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { createApplication } from '../../redux/actionCreators'
-
-const loginFormStyle = {
-  height: "100%",
-  marginTop: 75,
-}
-
-const bountiesStyle = {
-  marginRight: 10,
-}
 
 class BountyPageUserApply extends Component {
   constructor(props){

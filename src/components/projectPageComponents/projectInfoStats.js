@@ -2,24 +2,11 @@ import React, { Component } from 'react';
 import { Segment, Icon, Progress } from 'semantic-ui-react';
 import { connect } from "react-redux"
 
-const imageStyle = {
-  maxWidth: 75,
-  marginLeft: "auto",
-  marginRight: "auto",
-}
-
 const statsStyle = {
   marginTop: 30,
 }
 
 class ProjectInfoStats extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  componentDidMount(){
-
-  }
 
   render(){
     let averageRating = 0;

@@ -4,13 +4,6 @@ import { Link } from 'react-router-dom';
 
 const BountyCardSmallBrowse = (props) => {
 
-  const bountyCardStyle = {
-
-  }
-
-  const progressBarStyle = {
-  }
-  console.log(props)
   // gonna have to change some
   let projectName = props.bounty.project.name;
   if(projectName === undefined){

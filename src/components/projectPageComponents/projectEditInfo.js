@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 import { Icon, Segment, TextArea, Form, Button } from 'semantic-ui-react';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { editProject } from '../../redux/actionCreators';
 import { connect } from "react-redux"
 import { backgroundColor3, backgroundColor2 } from '../../style/theme'
-
-const imageStyle = {
-  maxWidth: 75,
-  marginLeft: "auto",
-  marginRight: "auto",
-}
-
-const headerStyle = {
-  color: "#E1EDFF",
-  marginBottom: "10px",
-}
-
 
 const projectInfoStyle = {
   marginLeft: 10,

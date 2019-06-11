@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import { Segment, Icon } from 'semantic-ui-react';
 import { connect } from "react-redux"
 
-const imageStyle = {
-  maxWidth: 75,
-  marginLeft: "auto",
-  marginRight: "auto",
-}
-
 const statsStyle = {
   marginTop: 30,
 }

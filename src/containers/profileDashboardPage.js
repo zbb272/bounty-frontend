@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Icon } from 'semantic-ui-react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../components/navBar';
 import UserInformation from './userInformation'

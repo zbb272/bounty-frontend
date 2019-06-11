@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 
 const ProjectCardSmall = (props) => {
 
-  const projectCardStyle = {
-
-  }
-
   const progressBarStyle = {
   }
 

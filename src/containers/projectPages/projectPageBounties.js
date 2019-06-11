@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Icon, Menu, Button } from 'semantic-ui-react';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
 import ProjectInformation from './projectInformation'
-import ProjectFiles from '../../components/projectPageComponents/projectFiles'
 import ProjectBounties from '../../components/projectPageComponents/projectBounties'
 import { getProjectWithId } from '../../redux/actionCreators'
 import { backgroundColor2 } from '../../style/theme'
@@ -51,7 +50,7 @@ class ProjectPageBounties extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <Segment style={bountiesStyle, backgroundColor2}>
+                <Segment style={bountiesStyle}>
                   <Menu attached tabular widths={3}>
                     <Menu.Item style={backgroundColor2} as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
                     <Menu.Item active as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>

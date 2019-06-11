@@ -4,13 +4,6 @@ import { Link } from 'react-router-dom';
 
 const UserCardSmallSearch = (props) => {
 
-  const bountyCardStyle = {
-
-  }
-
-  const progressBarStyle = {
-  }
-
   let concatDescription = props.user.description;
   if(concatDescription === null){
     concatDescription = ""

@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux"
 import BountyCardSmall from "../bountyCardComponents/bountyCardSmall"
-
-const imageStyle = {
-  maxWidth: 75,
-  marginLeft: "auto",
-  marginRight: "auto",
-}
-
-const headerStyle = {
-  color: "#E1EDFF",
-  marginBottom: "10px",
-}
 
 const segmentStyle = {
   backgroundColor: "#8DA2C0",

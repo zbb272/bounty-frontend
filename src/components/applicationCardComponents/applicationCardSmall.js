@@ -5,9 +5,6 @@ import {approveApplication} from '../../redux/actionCreators';
 import {connect} from 'react-redux';
 
 class ApplicationCardSmall extends Component {
-  constructor(props){
-    super(props)
-  }
 
   approveButtonClickHandler = (event) => {
     this.props.approveApplication(this.props.application)

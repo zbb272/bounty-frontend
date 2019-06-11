@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Icon, Menu } from 'semantic-ui-react';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
 import ProjectInformation from './projectInformation'
-import ProjectFiles from '../../components/projectPageComponents/projectFiles'
 import ProjectContributors from '../../components/projectPageComponents/projectContributors'
 import { getProjectWithId } from '../../redux/actionCreators'
 import { backgroundColor2 } from '../../style/theme'
@@ -64,7 +63,7 @@ class ProjectPageContributors extends Component {
               </Grid.Column>
 
               <Grid.Column width={11}>
-                <Segment style={contributionsStyle, backgroundColor2}>
+                <Segment style={contributionsStyle}>
                   <Menu attached tabular widths={3}>
                     <Menu.Item style={backgroundColor2} as={Link} to={`/projects/${this.props.currentProject.id}`}>Files</Menu.Item>
                     <Menu.Item style={backgroundColor2} as={Link} to={`/projects/${this.props.currentProject.id}/bounties`}>Bounties</Menu.Item>

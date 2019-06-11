@@ -5,9 +5,6 @@ import {userCompleteBounty, userCancelBounty} from '../../redux/actionCreators';
 import {connect} from 'react-redux';
 
 class BountyCardUserWorking extends Component {
-  constructor(props){
-    super(props)
-  }
 
   completeButtonEventHandler = (event) => {
     this.props.userCompleteBounty(this.props.currentBounty);

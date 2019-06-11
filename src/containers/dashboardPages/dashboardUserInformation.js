@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Segment } from 'semantic-ui-react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import DashboardUserInfoTop from '../../components/dashboardComponents/dashboardUserInfoTop'
 import DashboardUserInfoStats from '../../components/dashboardComponents/dashboardUserInfoStats'

@@ -3,17 +3,6 @@ import { Segment, Button } from 'semantic-ui-react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
 
-const imageStyle = {
-  maxWidth: 75,
-  marginLeft: "auto",
-  marginRight: "auto",
-}
-
-const headerStyle = {
-  color: "#E1EDFF",
-  marginBottom: "10px",
-}
-
 class DashboardUserInfoTop extends Component{
 
   render(){

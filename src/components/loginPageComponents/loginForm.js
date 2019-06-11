@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Segment, Button } from 'semantic-ui-react';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import {loginUser} from '../../redux/actionCreators';
 import {connect} from 'react-redux'
 

@@ -5,9 +5,6 @@ import { ownerCancelBounty} from '../../redux/actionCreators';
 import {connect} from 'react-redux';
 
 class BountyCardProjectOwnerWorking extends Component {
-  constructor(props){
-    super(props)
-  }
 
   cancelButtonEventHandler = (event) => {
     if(window.confirm("If you cancel the bounty at this stage you will lose your deposit. Press OK to confirm.")){

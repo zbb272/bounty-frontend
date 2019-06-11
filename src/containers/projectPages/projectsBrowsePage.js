@@ -30,7 +30,6 @@ class ProjectsBrowsePage extends Component {
         let highRatedProjects = [];
         let projectsWithMostBounts = [];
         let projectsAlmostComplete = [];
-        let randomProjects = [];
         data.forEach(project => {
           if(project.user.id !== this.props.currentUser.id){
             allProjects.push(project)

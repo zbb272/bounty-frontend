@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Icon, Menu } from 'semantic-ui-react';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import NavBar from '../../components/navBar';
 import ProjectEditInfo from '../../components/projectPageComponents/projectEditInfo'

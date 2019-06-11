@@ -5,17 +5,6 @@ import { connect } from "react-redux"
 import { backgroundColor1 } from '../../style/theme'
 import ProjectInfoStats from './projectInfoStats'
 
-const imageStyle = {
-  maxWidth: 75,
-  marginLeft: "auto",
-  marginRight: "auto",
-}
-
-const headerStyle = {
-  color: "#E1EDFF",
-  marginBottom: "10px",
-}
-
 class ProjectInfo extends Component{
 
   render(){

@@ -6,7 +6,7 @@ import NavBar from '../../components/navBar';
 import DashboardUserInformation from './dashboardUserInformation'
 import DashboardUserProjects from './dashboardUserProjects'
 import DashboardUserBounties from './dashboardUserBounties'
-import { backgroundColor1, backgroundColor2 } from '../../style/theme'
+import { backgroundColor2 } from '../../style/theme'
 
 const loginFormStyle = {
   height: "100%",

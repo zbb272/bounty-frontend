@@ -29,6 +29,8 @@ function loginUser(credentials){
       let user = data.find(user => {
         if(user.email === credentials.email && user.password_digest === credentials.password){
           return true
+        } else{
+          return false
         }
       })
       if(user === undefined){
